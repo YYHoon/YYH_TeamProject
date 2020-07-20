@@ -162,6 +162,7 @@
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="gameNode.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="imageManager.h" />
     <ClInclude Include="iniDataManager.h" />
@@ -171,6 +172,7 @@
     <ClInclude Include="LoadingScene.h" />
     <ClInclude Include="MovieManager.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="ParentStage.h" />
     <ClInclude Include="pixelCollsion.h" />
     <ClInclude Include="Player.h" />
@@ -209,6 +211,7 @@
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="gameNode.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="imageManager.cpp" />
     <ClCompile Include="iniDataManager.cpp" />
@@ -217,6 +220,7 @@
     <ClCompile Include="keyManager.cpp" />
     <ClCompile Include="LoadingScene.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="ParentStage.cpp" />
     <ClCompile Include="pixelCollsion.cpp" />
     <ClCompile Include="player.cpp" />

@@ -11,7 +11,9 @@
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
-
+#include <map>
+#include <unordered_map>
+#include <vector>
 using namespace std;
 
 #include "commonMacroFunction.h"
@@ -27,6 +29,8 @@ using namespace std;
 #include "txtData.h"
 #include "cameraManager.h"
 #include "keyAniManager.h"
+#include "iniDataManager.h"
+#include "ObjectManager.h"
 
 using namespace TTYONE_UTIL;
 
@@ -51,12 +55,18 @@ using namespace TTYONE_UTIL;
 #define SCENEMANAGER sceneManager::getSingleton()
 #define CAMERAMANAGER cameraManager::getSingleton()
 #define KEYANIMANAGER keyAniManager::getSingleton()
+#define OBJECTMANAGER ObjectManager::GetInstance()
 #define TXTDATA txtData::getSingleton()
+#define INIDATA iniDataManager::getSingleton()
 
 #define SAFE_DELETE(p)		{if(p) {delete(p); (p) = NULL;}}
 #define SAFE_RELEASE(p)		{if(p) {(p)->release(); (p) = NULL;}}
 #define SAFE_DELETE_ARRAY(p) {if(p) {delete[](p); (p) = NULL;}}
 
+#define Synthesize(ValueType,ValueName,FuncName) \
+protected: ValueType ValueName;\
+public: inline ValueType Get##FuncName(void) const{return ValueName;}\
+public: inline void Set##FuncName(ValueType value){ValueName = value;}
 //====================================
 // ## 20.05.29 ## Extern ##
 //====================================

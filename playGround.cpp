@@ -35,6 +35,8 @@ void playGround::update()
 {
 	gameNode::update();
 	SCENEMANAGER->update();
+
+	
 }
 
 //그리기 전용
