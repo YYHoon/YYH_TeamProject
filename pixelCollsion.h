@@ -1,5 +1,6 @@
 #pragma once
 #include "gameNode.h"
+#include "stdafx.h"
 
 class pixelCollsion : public gameNode
 {
@@ -25,7 +26,7 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render();
-	void PixelCollisionTest();
+	//void PixelCollisionTest();
 
 };
 
