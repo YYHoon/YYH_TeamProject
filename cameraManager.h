@@ -1,7 +1,7 @@
 #pragma once
 #include "singletonBase.h"
 #include "image.h"
-
+#include "animation.h"
 class cameraManager : public singletonBase<cameraManager>
 {
 private:
@@ -43,11 +43,12 @@ public:
 	void render(HDC hdc, image* img);
 	void render(HDC hdc, image* img, float destX, float destY);
 	void render(HDC hdc, image* img, float destX, float destY, float sourX, float sourY, float sourWidth, float sourHeight);
+	
 	void loopRender(HDC hdc, image* img, float destX, float destY);
 
 	void frameRender(HDC hdc, image* img, float destX, float destY);
 	void frameRender(HDC hdc, image* img, float destX, float destY, int frameX, int frameY);
-
+	void AniRender(HDC hdc, image* img, float destX, float destY, animation* ani);
 	float getSpeed() { return _speed; }
 	void setSpeed(float s) { _speed = s; }
 

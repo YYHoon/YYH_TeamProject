@@ -181,6 +181,13 @@ void cameraManager::frameRender(HDC hdc, image* img, float destX, float destY, i
 	if (img) img->frameRender(hdc, newX, newY, frameX, frameY);
 }
 
+void cameraManager::AniRender(HDC hdc,image* img, float destX, float destY, animation* ani)
+{
+	float newX = getRelativeX(destX);
+	float newY = getRelativeY(destY);
+	img->render(hdc, newX, newY, ani->getFramePos().x, ani->getFramePos().y,(float) ani->getFrameWidth(), (float)ani->getFrameHeight());
+}
+
 void cameraManager::zoom(HDC hdc, float ratio)
 {
 	if (ratio == 1) return;
