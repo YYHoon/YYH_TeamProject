@@ -213,12 +213,6 @@
     <ClInclude Include="ObjectManager.h">
       <Filter>2DGameFramework\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="StageOneOfOne.h">
-      <Filter>playGround\Stage</Filter>
-    </ClInclude>
-    <ClInclude Include="StageOneStart.h">
-      <Filter>playGround\Stage</Filter>
-    </ClInclude>
     <ClInclude Include="ParentStage.h">
       <Filter>playGround\Stage</Filter>
     </ClInclude>
@@ -236,6 +230,21 @@
     </ClInclude>
     <ClInclude Include="AllObstacle.h">
       <Filter>playGround\Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage1_2.h">
+      <Filter>playGround\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage1_Start.h">
+      <Filter>playGround\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage1_1.h">
+      <Filter>playGround\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="AllStage.h">
+      <Filter>playGround\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage1_Boss.h">
+      <Filter>playGround\Stage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -356,12 +365,6 @@
     <ClCompile Include="ObjectManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="StageOneOfOne.cpp">
-      <Filter>playGround\Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="StageOneStart.cpp">
-      <Filter>playGround\Stage</Filter>
-    </ClCompile>
     <ClCompile Include="ParentStage.cpp">
       <Filter>playGround\Stage</Filter>
     </ClCompile>
@@ -376,6 +379,18 @@
     </ClCompile>
     <ClCompile Include="UnDestructiblePillar.cpp">
       <Filter>playGround\Obstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage1_2.cpp">
+      <Filter>playGround\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage1_Start.cpp">
+      <Filter>playGround\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage1_1.cpp">
+      <Filter>playGround\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage1_Boss.cpp">
+      <Filter>playGround\Stage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

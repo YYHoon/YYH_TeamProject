@@ -22,8 +22,7 @@ protected:
 public:
 	virtual HRESULT init(float spawnCenterX, float spawnCenterY) = 0;
 	virtual void update() {};
-	//virtual void release();
-	//virtual void render();
+	
 
 	virtual void SetCenterXY(float x, float y) { _Center.x = x; _Center.y = y; }
 	virtual void SetName(string name) { _Name = name; }
@@ -35,5 +34,7 @@ public:
 	virtual OBSTACLE_TYPE GetType() { return _Type; }
 	virtual POINT_FLOAT GetCenter() { return _Center; }
 	virtual image* GetImg() { return _Img; }
+
+
 };
 

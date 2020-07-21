@@ -81,6 +81,11 @@ void playGround::imginit()
 	IMAGEMANAGER->addImage("Stage1_1", "image/Stage_BG/Stage1_1.bmp", 2400, 1064, false, RGB(0, 0, 0));
 	IMAGEMANAGER->addImage("Stage1_2", "image/Stage_BG/Stage1_2.bmp", 2860, 1040, false, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Stage1_Boss", "image/Stage_BG/Stage1_Boss.bmp", 2769, 1280, false, RGB(255, 0, 255));
+	//Pixel
+	IMAGEMANAGER->addImage("Stage1_Start_Pixel", "image/Stage_BG/Stage1_Start_Pixel.bmp", 2016, 672, false, RGB(0, 0, 0));
+	IMAGEMANAGER->addImage("Stage1_1_Pixel", "image/Stage_BG/Stage1_1_Pixel.bmp", 2400, 1064, false, RGB(0, 0, 0));
+	IMAGEMANAGER->addImage("Stage1_2", "image/Stage_BG/Stage1_2_Pixel.bmp", 2860, 1040, false, RGB(0, 0, 0));
+	IMAGEMANAGER->addImage("Stage1_Boss_Pixel", "image/Stage_BG/Stage1_Boss_Pixel.bmp", 2769, 1280, false, RGB(0, 0, 0));
 
 	//Obstacle
 	IMAGEMANAGER->addImage("Pillar", "image/Obstacle/Pillar.bmp", 207, 864, true, RGB(255, 0, 255));

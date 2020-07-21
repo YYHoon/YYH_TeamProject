@@ -4,12 +4,13 @@ class Player;
 class ParentsObstacle;
 
 
-class StageOneOfOne : public ParentStage
+class Stage1_1 : public ParentStage
 {
 private:
 
 
 public:
 	HRESULT init()override;
+	void render()override;
 };
 

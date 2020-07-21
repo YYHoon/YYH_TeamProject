@@ -4,7 +4,7 @@
 class Player;
 class ParentsObstacle;
 
-class StageOneStart : public ParentStage
+class Stage1_Start : public ParentStage
 {
 private:
 	

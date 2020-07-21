@@ -14,8 +14,6 @@ private:
 	vector<ParentStage*> _vStage;
 
 	int _CurrentStageIndex;
-	ParentStage* _Stage_One_Start;
-	ParentStage* _Stage_One_One;
 	Player* _Player;
 
 
