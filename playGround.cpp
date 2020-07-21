@@ -18,11 +18,11 @@ HRESULT playGround::init()
 	
 	imginit(); // 모든 이미지를 여기다 넣도록
 	soundinit(); // 사운드도 따로 뺐습니다.
-	SCENEMANAGER->addScene("LoadingScene", new LoadingScene);
-	SCENEMANAGER->addScene("VideoScene", new VideoScene);
-	SCENEMANAGER->addScene("IntroMenuScene", new IntroMenuScene);
-	SCENEMANAGER->addScene("SelectMenuScene", new SelectMenuScene);
-	SCENEMANAGER->addScene("CharacterSelectScene", new CharacterSelectScene);
+	SCENEMANAGER->addScene("LoadingScene", new LoadingScene);					//1
+	SCENEMANAGER->addScene("VideoScene", new VideoScene);						//2
+	SCENEMANAGER->addScene("IntroMenuScene", new IntroMenuScene);				//3
+	SCENEMANAGER->addScene("SelectMenuScene", new SelectMenuScene);				//4
+	SCENEMANAGER->addScene("CharacterSelectScene", new CharacterSelectScene);	//5
 	
 	SCENEMANAGER->changeScene("LoadingScene");
 	return S_OK;
