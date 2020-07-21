@@ -237,6 +237,9 @@
     <ClInclude Include="AllObstacle.h">
       <Filter>playGround\Obstacle</Filter>
     </ClInclude>
+    <ClInclude Include="Shop.h">
+      <Filter>playGround\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -377,6 +380,10 @@
     <ClCompile Include="UnDestructiblePillar.cpp">
       <Filter>playGround\Obstacle</Filter>
     </ClCompile>
+    <ClCompile Include="Shop.cpp">
+      <Filter>playGround\UI</Filter>
+    </ClCompile>
+  
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="windowsAPI.rc">
