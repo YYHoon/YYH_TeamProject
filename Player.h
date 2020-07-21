@@ -8,10 +8,9 @@ class Player : public gameNode
 private:
 	State* _State;
 
-	image* _PlayerImg;
-	animation* _PlayerAni;
+	image* _Shadow;
 	POINTFLOAT _Center;
-	MYRECT _PlayerRc;
+	MYRECT _ShadowRc;
 	float _Speed;
 	float _Gravity;
 	float _Jump;
@@ -32,27 +31,33 @@ public:
 	virtual void Update();
 	virtual void Release();
 	virtual void Render();
+	virtual void DebugRender();
+	virtual void PlayerKeyMove();
 
-	virtual void PlayerKeyManager();
 
-
-	virtual void BattleStart();
-	virtual void Idle();
 	virtual void Walk();
-	virtual void Run();
-	virtual void Jump();
-	virtual void Attack();
-	virtual void Hit();
-	virtual void Stun();
+	virtual void Attack1();
+	virtual void Attack2();
+	virtual void Attack3();
 	virtual void StandUp();
+	virtual void Skill1();
+	virtual void Skill2();
+	virtual void Default();
 
 
 
 	inline bool GetPlayerDirection() { return _Left; }
-	inline float GetPlayerCenterX() { return _Center.x; }
-	inline float GetPlayerCenterY() { return _Center.y; }
+	inline float GetShadowCenterX() { return _Center.x; }
+	inline float GetShadowCenterY() { return _Center.y; }
+	inline POINTFLOAT GetShadowCenterPoint() { return _Center; }
+	inline MYRECT GetShadowRect() { return _ShadowRc; }
+	//inline MYRECT GetPlayerRect() { return _State->GetRect(); }//ㅡㄹ레이어피격렉트
 
-	inline void SetPlayerCenterX(POINTFLOAT X) { _Center.x = X.x; }
-	inline void SetPlayerCenterY(POINTFLOAT Y) { _Center.x = Y.y; }
+
+	inline void SetShadowCenterX(POINTFLOAT XY) {
+		_Center.x = XY.x;
+		_Center.y = XY.y;
+	}
+
 	void SetState(State* state);
 };

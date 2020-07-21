@@ -1,0 +1,2 @@
+C:\Users\KGA_5\Desktop\팀포폴\x64\Debug\windowsAPI.exe
+C:\Users\KGA_5\Desktop\팀포폴\x64\Debug\windowsAPI.pdb

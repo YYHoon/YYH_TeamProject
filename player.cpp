@@ -4,7 +4,7 @@
 
 Player::Player()
 {
-	_State = PlayLeftIdle::GetInstance();
+	_State = BattleStart::GetInstance();
 }
 
 void Player::PlayerImageAniStting()
@@ -26,6 +26,7 @@ void Player::PlayerImageAniStting()
 	IMAGEMANAGER->addFrameImage("PlayerStomp", "Player/Kyoko_Stomp.bmp", 1290, 420, 10, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("PlayerStnned", "Player/Kyoko_Stunned.bmp", 384, 384, 4, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("PlayerDap", "Player/Kyoko_Ultimate.bmp", 3675, 384, 25, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("PlayerJump", "Player/Kyoko_Jump.bmp", 405, 414, 3, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("PlayerShadow", "Player/KyoKo_Shadow.bmp", 128, 38, true, RGB(255, 0, 255));
 
 	//배틀스타트
@@ -36,15 +37,15 @@ void Player::PlayerImageAniStting()
 
 	//아이들
 	int lIdele[] = { 11,10,9,8,7,6,5,4,3,2,1,0 };
-	KEYANIMANAGER->addArrayFrameAnimation("PlayerLeftIdle", "PlayerIdle", lIdele, 12, 6, true);
+	KEYANIMANAGER->addArrayFrameAnimation("PlayerLeftIdle", "PlayerIdle", lIdele, 12, 10, true);
 	int rIdle[] = { 12,13,14,15,16,17,18,19,20,21,22,23 };
-	KEYANIMANAGER->addArrayFrameAnimation("PlayerRightIdle", "PlayerIdle", rIdle, 12, 6, true);
+	KEYANIMANAGER->addArrayFrameAnimation("PlayerRightIdle", "PlayerIdle", rIdle, 12, 10, true);
 
 	//걷기
 	int lWalk[] = { 11,10,9,8,7,6,5,4,3,2,1,0 };
-	KEYANIMANAGER->addArrayFrameAnimation("PlayerLeftWalk", "PlayerWalk", lWalk, 12, 6, true);
+	KEYANIMANAGER->addArrayFrameAnimation("PlayerLeftWalk", "PlayerWalk", lWalk, 12, 10, true);
 	int rWalk[] = { 12,13,14,15,16,17,18,19,20,21,22,23 };
-	KEYANIMANAGER->addArrayFrameAnimation("PlayerRightWalk", "PlayerWalk", rWalk, 12, 6, true);
+	KEYANIMANAGER->addArrayFrameAnimation("PlayerRightWalk", "PlayerWalk", rWalk, 12, 10, true);
 
 	//달리기
 	int lRun[] = { 15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0 };
@@ -128,18 +129,36 @@ void Player::PlayerImageAniStting()
 	int rDap[] = { 25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49 };
 	KEYANIMANAGER->addArrayFrameAnimation("PlayerRightDap", "PlayerDap", rDap, 25, 6, false);
 
+	//점프
+	int lJump[] = { 1,2 };
+	KEYANIMANAGER->addArrayFrameAnimation("PlayerLeftJump", "PlayerJump", lJump, 2, 5, false);
+	int rJump[] = { 4,3 };
+	KEYANIMANAGER->addArrayFrameAnimation("PlayerRightJump", "PlayerJump", rJump, 2, 5, false);
+
+	//착지
+	int lFall[] = { 0 };
+	KEYANIMANAGER->addArrayFrameAnimation("PlayerLeftFall", "PlayerJump", lFall, 1, 5, false);
+	int rFall[] = { 5 };
+	KEYANIMANAGER->addArrayFrameAnimation("PlayerRightFall", "PlayerJump", rFall, 1, 5, false);
+
 }
 
 HRESULT Player::Init()
 {
 	PlayerImageAniStting();
+	_Center.x = 300;
+	_Center.y = 300;
+	_Shadow = IMAGEMANAGER->findImage("PlayerShadow");
+	_ShadowRc.set(_Center.x - (_Shadow->getWidth() * 0.5f),
+		_Center.y - (_Shadow->getHeight() * 0.5f),
+		_Center.x + (_Shadow->getWidth() * 0.5f),
+		_Center.y + (_Shadow->getHeight() * 0.5f));
 
-	_Center.x = 200;
-	_Center.y = 500;
-	_Speed = 5;
-	_Left = false;
 
-	BattleStart();
+
+	_State->SetCenterXY(_Center);
+	_State->Init();
+	Default();
 
 
 	return S_OK;
@@ -148,8 +167,22 @@ HRESULT Player::Init()
 
 void Player::Update()
 {
-	PlayerKeyManager();
-	
+	PlayerKeyMove();
+	_State->Update();
+
+	if (_State == BattleStart::GetInstance() && !_State->GetAniIsPlay())
+	{
+		_State = PlayRightIdle::GetInstance();
+		Default();
+	}
+
+
+
+	_ShadowRc.set(_Center.x - (_Shadow->getWidth() * 0.5f),
+		_Center.y - (_Shadow->getHeight() * 0.5f),
+		_Center.x + (_Shadow->getWidth() * 0.5f),
+		_Center.y + (_Shadow->getHeight() * 0.5f));
+	_State->SetCenterXY(_Center);
 }
 
 void Player::Release()
@@ -158,57 +191,38 @@ void Player::Release()
 
 void Player::Render()
 {
-	_PlayerImg->aniRender(getMemDC(), _PlayerRc.left,
-		_PlayerRc.top, _PlayerAni);
+	if (KEYMANAGER->isStayKeyDown(VK_SPACE))DebugRender();
+	_State->Render();
+
+
+
+
 }
 
-void Player::PlayerKeyManager()
+void Player::DebugRender()
 {
-	
-	_PlayerRc.set(_Center.x - 30, _Center.y - 30, _Center.x + 30, _Center.y + 180);
+	CAMERAMANAGER->rectangle(getMemDC(), _ShadowRc);
+	_State->DebugRender();
+}
+
+void Player::PlayerKeyMove()
+{
 	if (KEYMANAGER->isStayKeyDown('A'))
 	{
-		_Left = true;
-		_Center.x -= _Speed;
+		_Center.x -= 3;
 	}
-	if (KEYMANAGER->isOnceKeyUp('A'))
+	if (KEYMANAGER->isStayKeyDown('S'))
 	{
-		_Left = true;
-
+		_Center.y += 2;
 	}
-
 	if (KEYMANAGER->isStayKeyDown('D'))
 	{
-		_Left = false;
-		_Center.x += _Speed;
+		_Center.x += 3;
 	}
-	if (KEYMANAGER->isOnceKeyUp('D'))
+	if (KEYMANAGER->isStayKeyDown('W'))
 	{
-		_Left = false;
-
+		_Center.y -= 2;
 	}
-
-
-
-}
-
-void Player::SetState(State* state)
-{
-	this->_State = state;
-}
-
-void Player::BattleStart()
-{
-	_PlayerImg = IMAGEMANAGER->findImage("PlayerBattleStart");
-	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerRightBattleStart");
-	_PlayerAni->start();
-	_State->BattleStart(this);
-	
-}
-
-void Player::Idle()
-{
-	_State->Idle(this);
 }
 
 void Player::Walk()
@@ -216,32 +230,45 @@ void Player::Walk()
 	_State->Walk(this);
 }
 
-void Player::Run()
+void Player::Attack1()
 {
-	_State->Run(this);
+	_State->Attack1(this);
 }
 
-void Player::Jump()
+void Player::Attack2()
 {
-	_State->Jump(this);
+	_State->Attack2(this);
 }
 
-void Player::Attack()
+void Player::Attack3()
 {
-	_State->Attack(this);
-}
-
-void Player::Hit()
-{
-	_State->Hit(this);
-}
-
-void Player::Stun()
-{
-	_State->Stun(this);
+	_State->Attack3(this);
 }
 
 void Player::StandUp()
 {
 	_State->StandUp(this);
 }
+
+void Player::Skill1()
+{
+	_State->Skill1(this);
+}
+
+void Player::Skill2()
+{
+	_State->Skill2(this);
+}
+
+void Player::Default()
+{
+	_State->Default(this);
+}
+
+
+void Player::SetState(State* state)
+{
+	this->_State = state;
+}
+
+
