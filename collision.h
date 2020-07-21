@@ -85,6 +85,14 @@ namespace TTYONE_UTIL
 			bottom = _bottom;
 		}
 
+		void centerSet(float centerX, float centerY, float width, float height)
+		{
+			left = centerX - width * 0.5f;
+			right = centerX + width * 0.5f;
+			top = centerY - height * 0.5f;
+			bottom = centerY + height * 0.5f;
+		}
+
 		void setLeftTopPos(float _left, float _top)
 		{
 			float width = getWidth();

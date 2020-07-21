@@ -2,8 +2,11 @@
 #include "gameNode.h"
 #include "LoadingScene.h"
 #include "IntroMenuScene.h"
-
+#include "Player.h"
+#include "ParentStage.h"
+#include "StageManager.h"
 #include <iostream>
+
 #pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console")
 using namespace std;
 
@@ -13,10 +16,14 @@ using namespace std;
 class playGround : public gameNode
 {
 private:
-	
+
 public:
 	playGround();
 	~playGround();
+
+	StageManager* _SM;
+	Object* _Player;
+	
 
 	virtual HRESULT init();
 	virtual void release();
@@ -24,6 +31,6 @@ public:
 	virtual void render();
 
 	void imginit();
-	
+
 };
 

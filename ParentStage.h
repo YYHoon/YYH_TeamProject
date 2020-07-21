@@ -1,26 +1,37 @@
 #pragma once
 #include "gameNode.h"
+#include <vector>
 
-class Object;
+class Player;
+class ParentsObstacle;
 
 class ParentStage : public gameNode
 {
 protected:
 	image* _Img;
 	string _Name;
-	MYRECT _Exit[2];
+	MYRECT _RightExit;
+	MYRECT _LeftExit;
 	MYRECT _EventArea;
 	POINT_FLOAT _EventCenterSpot;
+	POINT_FLOAT _PlayerSpawnXY;
 	bool _IsOnceClear;
 	int _StageIndex;
-	Object* _Player;
+	Player* _Player;
+	ParentsObstacle* _Obstacle;
 
+	vector<ParentsObstacle*> _vObstacle;
 public:
+	ParentStage();
+
 	virtual HRESULT init() = 0;
 	virtual void release() {}
-	virtual void update() {}
-	virtual void render() {}
+	virtual void update();
+	virtual void render();
 
-	virtual void SetPlayer();
+	virtual void SetPlayerMemoryAddressLink(Player* memory) { _Player = memory; }
+	virtual bool IsColRightExit();
+	virtual bool IsColLefttExit();
+
 };
 

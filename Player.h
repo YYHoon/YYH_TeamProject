@@ -9,7 +9,7 @@ public:
 	Player();
 	~Player();
 
-	HRESULT init(float spawnX, float spawnY);
+	HRESULT init()override;
 	void release();
 	void update();
 	void render();

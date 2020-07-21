@@ -9,11 +9,12 @@ Player::~Player()
 {
 }
 
-HRESULT Player::init(float spawnX, float spawnY)
+HRESULT Player::init()
 {
 	_Type = OBJECT_TYPE::Player;
 	_Name = "KyonKo";
-	_Collision.set(spawnX- 100, spawnY - 100, spawnX + 100, spawnY + 100);
+	_Img = IMAGEMANAGER->findImage("Player");
+	_HP = 50;
 	return S_OK;
 }
 
@@ -25,13 +26,31 @@ void Player::release()
 void Player::update()
 {
 	move();
+	_Collision.centerSet(_Center.x, _Center.y, _Img->getWidth(), _Img->getHeight());
 }
 
 void Player::render()
 {
-	_Img = IMAGEMANAGER->findImage("Player");
+	
+	
 }
 
 void Player::move()
 {
+	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
+	{
+		_Center.x -= 3;
+	}
+	if(KEYMANAGER->isStayKeyDown(VK_RIGHT))
+	{
+		_Center.x += 3;
+	}
+	if (KEYMANAGER->isStayKeyDown(VK_DOWN))
+	{
+		_Center.y += 3;
+	}
+	if (KEYMANAGER->isStayKeyDown(VK_UP))
+	{
+		_Center.y -= 3;
+	}
 }

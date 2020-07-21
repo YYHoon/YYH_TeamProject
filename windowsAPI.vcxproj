@@ -147,10 +147,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AllObstacle.h" />
     <ClInclude Include="animation.h" />
     <ClInclude Include="cameraManager.h" />
     <ClInclude Include="collision.h" />
     <ClInclude Include="commonMacroFunction.h" />
+    <ClInclude Include="Desk.h" />
+    <ClInclude Include="DestructiblePillar.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="effectManager.h" />
     <ClInclude Include="Enemy.h" />
@@ -173,6 +176,7 @@
     <ClInclude Include="MovieManager.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="ParentsObstacle.h" />
     <ClInclude Include="ParentStage.h" />
     <ClInclude Include="pixelCollsion.h" />
     <ClInclude Include="Player.h" />
@@ -194,6 +198,7 @@
     <ClInclude Include="timer.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="txtData.h" />
+    <ClInclude Include="UnDestructiblePillar.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="windowsAPI.h" />
   </ItemGroup>
@@ -201,6 +206,8 @@
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="cameraManager.cpp" />
     <ClCompile Include="collision.cpp" />
+    <ClCompile Include="Desk.cpp" />
+    <ClCompile Include="DestructiblePillar.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />
     <ClCompile Include="Enemy.cpp" />
@@ -221,6 +228,7 @@
     <ClCompile Include="LoadingScene.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="ParentsObstacle.cpp" />
     <ClCompile Include="ParentStage.cpp" />
     <ClCompile Include="pixelCollsion.cpp" />
     <ClCompile Include="player.cpp" />
@@ -243,6 +251,7 @@
     <ClCompile Include="timer.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="txtData.cpp" />
+    <ClCompile Include="UnDestructiblePillar.cpp" />
     <ClCompile Include="utils.cpp" />
     <ClCompile Include="windowsAPI.cpp" />
   </ItemGroup>
