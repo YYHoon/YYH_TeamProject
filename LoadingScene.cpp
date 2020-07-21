@@ -78,7 +78,7 @@ DWORD CALLBACK threadfunction(LPVOID lpParameter)
 		SOUNDMANAGER->play("IntroMusic", 0.3f);
 
 		//슬립 안걸면 넘 빠름...
-		Sleep(1);
+		Sleep(0);
 
 		loadingHelper->_currentCount++;
 	}

@@ -19,8 +19,13 @@ HRESULT playGround::init()
 	imginit(); // 모든 이미지를 여기다 넣도록
 	SCENEMANAGER->addScene("LoadingScene", new LoadingScene);
 	SCENEMANAGER->addScene("MenuScene", new IntroMenuScene);
-	
-	SCENEMANAGER->changeScene("LoadingScene");
+	SCENEMANAGER->addScene("pixel", new pixelCollsion);
+	SCENEMANAGER->addScene("Shop", new Shop);
+
+	//SCENEMANAGER->changeScene("LoadingScene");
+	//SCENEMANAGER->changeScene("pixel");
+	SCENEMANAGER->changeScene("Shop");
+
 	return S_OK;
 }
 
@@ -65,7 +70,15 @@ void playGround::imginit()
 	IMAGEMANAGER->addImage("Intro_UI_QUIT", "Image/UI_QUIT.bmp", 136, 54, true, MAGENTA);
 	IMAGEMANAGER->addImage("Intro_UI_ARROW", "Image/UI_title_arrow.bmp", 53, 61, true, MAGENTA);
 	IMAGEMANAGER->addImage("Intro_UI_LOGO", "Image/UI_TITLE_LOGO.bmp", 573, 317, true, MAGENTA);
-	
+	//	Shop
+	IMAGEMANAGER->addImage("Stage1_Store", "Image/Shop/Stage1_Store.bmp", 1600, 900, true, MAGENTA);
+	IMAGEMANAGER->addImage("Wallet", "Image/Shop/Wallet.bmp", 1600, 900, true, MAGENTA);
+	IMAGEMANAGER->addImage("potatoChips", "Image/Shop/potatoChips.bmp", 1600, 900, true, MAGENTA);
+	IMAGEMANAGER->addImage("baconSkewer", "Image/Shop/baconSkewer.bmp", 1600, 900, true, MAGENTA);
+	IMAGEMANAGER->addImage("drink", "Image/Shop/drink.bmp", 1600, 900, true, MAGENTA);
+	IMAGEMANAGER->addImage("turboJuice", "Image/Shop/turboJuice.bmp", 1600, 900, true, MAGENTA);
+
+
 
 	// StageManager
 	//IMAGEMANAGER->addImage("Player", "image/Player/Kyoko_Shadow.bmp", 128, 38, true, RGB(255, 0, 255));
