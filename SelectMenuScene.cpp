@@ -27,6 +27,9 @@ HRESULT SelectMenuScene::init()
     _FileCharacterX = WINSIZEX;
     _FileCharacterY = WINSIZEY - IMAGEMANAGER->findImage("UI_FILE_SELECT_FG_Character")->getHeight();
 
+    SOUNDMANAGER->stop("IntroMusic");
+    SOUNDMANAGER->play("MenuMusic", 0.3f);
+
     _KeyCount = 0;
 
     return S_OK;
@@ -43,17 +46,23 @@ void SelectMenuScene::update()
    {
        _KeyCount--;
        if (_KeyCount <= 0) _KeyCount = 0;
+
+       SOUNDMANAGER->play("MemuCursor", 0.3f);
+
    }
 
    if (KEYMANAGER->isOnceKeyDown(VK_DOWN))
    {
        _KeyCount++;
        if (_KeyCount >= 2) _KeyCount = 2;
+
+       SOUNDMANAGER->play("MemuCursor", 0.3f);
    }
 
    if (KEYMANAGER->isOnceKeyDown(VK_BACK))
    {
        SCENEMANAGER->changeScene("IntroMenuScene");
+       SOUNDMANAGER->play("MemuBack", 0.3f);
    }
 
    _LoopX += 1;
@@ -77,16 +86,34 @@ void SelectMenuScene::render()
         case 0:
         {
             IMAGEMANAGER->findImage("UI_FILE_A")->render(getMemDC(), _x, _y[0]);
+
+            if (KEYMANAGER->isOnceKeyDown(VK_RETURN))
+            {
+                SCENEMANAGER->changeScene("CharacterSelectScene");
+                SOUNDMANAGER->play("MemuConfirm", 0.3f);
+            }
         }
         break;
         case 1:
         {
             IMAGEMANAGER->findImage("UI_FILE_B")->render(getMemDC(), _x, _y[1]);
+
+            if (KEYMANAGER->isOnceKeyDown(VK_RETURN))
+            {
+                SCENEMANAGER->changeScene("CharacterSelectScene");
+                SOUNDMANAGER->play("MemuConfirm", 0.3f);
+            }
         }
         break;
         case 2:
         {
             IMAGEMANAGER->findImage("UI_FILE_C")->render(getMemDC(), _x+1, _y[2]);
+
+            if (KEYMANAGER->isOnceKeyDown(VK_RETURN))
+            {
+                SCENEMANAGER->changeScene("CharacterSelectScene");
+                SOUNDMANAGER->play("MemuConfirm", 0.3f);
+            }
         }
         break;
     }

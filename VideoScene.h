@@ -7,7 +7,8 @@ using namespace cv;
 class VideoScene : public gameNode
 {
 private:
-	Mat _Frame;
+	Mat _IFrame;
+	bool _Start = false;
 
 public:
 	HRESULT init();
@@ -15,6 +16,6 @@ public:
 	void update();
 	void render();
 
-	int video();
+	int IntroVideo();
 };
 

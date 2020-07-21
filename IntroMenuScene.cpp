@@ -54,21 +54,28 @@ void IntroMenuScene::update()
 	if (KEYMANAGER->isOnceKeyDown(VK_DOWN))
 	{
 		IMAGEMANAGER->findImage("Intro_UI_ARROW")->setY(540);
+		SOUNDMANAGER->play("MemuCursor", 0.3f);
 	}
 
 	if (KEYMANAGER->isOnceKeyDown(VK_UP))
 	{
 		IMAGEMANAGER->findImage("Intro_UI_ARROW")->setY(480);
+		SOUNDMANAGER->play("MemuCursor", 0.3f);
 	}
 
 	if (KEYMANAGER->isOnceKeyDown(VK_RETURN))
 	{
+		SOUNDMANAGER->play("MemuConfirm", 0.3f);
+
 		if (IMAGEMANAGER->findImage("Intro_UI_ARROW")->getY() == 480)
 		{
 			SCENEMANAGER->changeScene("SelectMenuScene");
 		}
 
-		if (IMAGEMANAGER->findImage("Intro_UI_ARROW")->getY() == 540) PostQuitMessage(0);
+		if (IMAGEMANAGER->findImage("Intro_UI_ARROW")->getY() == 540)
+		{
+			PostQuitMessage(0);
+		}
 	}
 
 }

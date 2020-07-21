@@ -189,6 +189,9 @@
     <ClInclude Include="VideoScene.h">
       <Filter>playGround\UI</Filter>
     </ClInclude>
+    <ClInclude Include="CharacterSelectScene.h">
+      <Filter>playGround\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -294,6 +297,9 @@
       <Filter>playGround\UI</Filter>
     </ClCompile>
     <ClCompile Include="VideoScene.cpp">
+      <Filter>playGround\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterSelectScene.cpp">
       <Filter>playGround\UI</Filter>
     </ClCompile>
   </ItemGroup>

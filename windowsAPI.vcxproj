@@ -155,6 +155,7 @@
   <ItemGroup>
     <ClInclude Include="animation.h" />
     <ClInclude Include="cameraManager.h" />
+    <ClInclude Include="CharacterSelectScene.h" />
     <ClInclude Include="collision.h" />
     <ClInclude Include="commonMacroFunction.h" />
     <ClInclude Include="effect.h" />
@@ -199,6 +200,7 @@
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="cameraManager.cpp" />
+    <ClCompile Include="CharacterSelectScene.cpp" />
     <ClCompile Include="collision.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />

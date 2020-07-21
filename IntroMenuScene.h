@@ -12,6 +12,8 @@ private:
 
 	int _AlphaValue;
 
+	bool _KeyPress;
+
 public:
 	IntroMenuScene();
 	~IntroMenuScene();
