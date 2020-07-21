@@ -67,7 +67,11 @@ public:
 	void stop(string animationKeyName);
 	void pause(string animationKeyName);
 	void resume(string animationKeyName);
-
+	//buffer
+	void StartB(string animationKeyName);
+	void StopB(string animationKeyName);
+	void PauseB(string animationKeyName);
+	void ResumeB(string animationKeyName);
 	animation* findAnimation(string animationKeyName);
 
 	void deleteAll();

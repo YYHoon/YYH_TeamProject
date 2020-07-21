@@ -34,6 +34,21 @@ void keyAniManager::update()
 		iter->second->frameUpdate(TIMEMANAGER->getElapsedTime() * 1.0f);
 	}
 
+	iterTotalEffect vIter;
+	HIterAnimations mIter;
+
+	for (vIter = _vTomtalAnimation.begin(); vIter != _vTomtalAnimation.end(); ++vIter)
+	{
+		for (mIter = vIter->begin(); mIter != vIter->end(); ++mIter)
+		{
+			iterAnimations vArrIter;
+			for (vArrIter = mIter->second.begin(); vArrIter != mIter->second.end(); ++vArrIter)
+			{
+				if ((*vArrIter)->isPlay()) continue;
+				(*vArrIter)->frameUpdate(TIMEMANAGER->getElapsedTime() * 1.0f);
+			}
+		}
+	}
 }
 
 void keyAniManager::render()
@@ -348,6 +363,43 @@ void keyAniManager::resume(string animationKeyName)
 	iter->second->resume();
 }
 
+void keyAniManager::StartB(string animationKeyName)
+{
+	iterTotalEffect vIter;
+	HIterAnimations mIter;
+	for (vIter = _vTomtalAnimation.begin(); vIter != _vTomtalAnimation.end(); ++vIter)
+	{
+		cout << "Èñ¸Á" << endl;
+		for (mIter = vIter->begin(); mIter != vIter->end(); ++mIter)
+		{
+			if (!(mIter->first != animationKeyName)) break;
+			iterAnimations vArrIter;
+			cout << "Èñ¸Á" << endl;
+			for (vArrIter = mIter->second.begin(); vArrIter != mIter->second.end(); ++vArrIter)
+			{
+				if ((*vArrIter)->isPlay()) continue;
+				(*vArrIter)->start();
+				return;
+			}
+		}
+	}
+}
+
+void keyAniManager::StopB(string animationKeyName)
+{
+
+}
+
+void keyAniManager::PauseB(string animationKeyName)
+{
+
+}
+
+void keyAniManager::ResumeB(string animationKeyName)
+{
+
+}
+
 animation * keyAniManager::findAnimation(string animationKeyName)
 {
 	iterAnimation iter = _mTotalAnimation.find(animationKeyName);
@@ -372,5 +424,25 @@ void keyAniManager::deleteAll()
 	}
 
 	_mTotalAnimation.clear();
+	HIterAnimations viter;
+	for (iterTotalEffect iter = _vTomtalAnimation.begin(); iter != _vTomtalAnimation.end();++iter)
+	{
+		for (viter = iter->begin(); viter != iter->end(); ++viter)
+		{
+			iterAnimations mIter;
+			for (mIter = viter->second.begin(); mIter != viter->second.end();) 
+			{
+				if ((*mIter) != NULL)
+				{
+					(*mIter)->release();
+					SAFE_DELETE((*mIter));
+					mIter = viter->second.erase(mIter);
+				}
+				else ++mIter;
+			}
+		}
+	}
+
+	_vTomtalAnimation.clear();
 
 }

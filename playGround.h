@@ -13,7 +13,8 @@ using namespace std;
 class playGround : public gameNode
 {
 private:
-	
+	animation* _ClMotion;
+	image* img;
 public:
 	playGround();
 	~playGround();

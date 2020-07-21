@@ -19,8 +19,16 @@ HRESULT playGround::init()
 	imginit(); // 모든 이미지를 여기다 넣도록
 	SCENEMANAGER->addScene("LoadingScene", new LoadingScene);
 	SCENEMANAGER->addScene("MenuScene", new IntroMenuScene);
-	
-	SCENEMANAGER->changeScene("LoadingScene");
+
+	img = IMAGEMANAGER->addFrameImage("CLIdle", "image/enemy/cr/cl_idle.bmp", 0, 0, 1980, 432, 12, 2, true, RGB(255, 0, 255));
+	int RIdle[] = { 23,22,21,20,19,18,17,16,15,14,13,12 };
+	KEYANIMANAGER->addArrayFrameAnimation("ClRightIdle", "CLIdle", RIdle, 12, 10, true);
+
+
+	_ClMotion = KEYANIMANAGER->findAnimation("ClRightIdle");
+	//_ClMotion->start();
+	KEYANIMANAGER->StartB("ClRightIdle");
+	//SCENEMANAGER->changeScene("LoadingScene");
 	return S_OK;
 }
 
@@ -35,7 +43,7 @@ void playGround::update()
 {
 	gameNode::update();
 	SCENEMANAGER->update();
-
+	KEYANIMANAGER->update();
 	
 }
 
@@ -45,8 +53,8 @@ void playGround::render()
 	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
 	//=================================================
 
-	SCENEMANAGER->render();
-
+	//SCENEMANAGER->render();
+	img->aniRender(getMemDC(), 200, 200, _ClMotion);
 
 	TIMEMANAGER->render(getMemDC());
 	//=============================================
