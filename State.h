@@ -1,15 +1,19 @@
 #pragma once
 #include"Player.h"
+#include"gameNode.h"
 
-class State
+class State : public gameNode
 {
 protected:
 	State* _State;
 
+	Player* _Player;
 public:
 	State() {};
 	virtual ~State() {};
 
+	virtual void BattleStart(Player* player) = 0;
+	virtual void Idle(Player* player) = 0;
 	virtual void Walk(Player* player) = 0;
 	virtual void Run(Player* player) = 0;
 	virtual void Jump(Player* player) = 0;
@@ -18,9 +22,12 @@ public:
 	virtual void Stun(Player* player) = 0;
 	virtual void StandUp(Player* player) = 0;
 
-	inline State* GetState() { return _State; }
-	inline void SetState(State* state) { _State = state; }
+	virtual void Render(Player* player);
 
+	inline State* GetState() { return _State; }
+
+
+	inline void SetState(State* state) { _State = state; }
 };
 
 
@@ -36,6 +43,8 @@ public:
 
 	static PlayLeftIdle* GetInstance();
 
+	virtual void BattleStart(Player* player);
+	virtual void Idle(Player* player);
 	virtual void Walk(Player* player);
 	virtual void Run(Player* player);
 	virtual void Jump(Player* player);
@@ -57,6 +66,8 @@ public:
 
 	static PlayRightIdle* GetInstance();
 
+	virtual void BattleStart(Player* player);
+	virtual void Idle(Player* player);
 	virtual void Walk(Player* player);
 	virtual void Run(Player* player);
 	virtual void Jump(Player* player);

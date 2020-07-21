@@ -3,6 +3,8 @@
 #include "LoadingScene.h"
 #include "IntroMenuScene.h"
 
+#include "Player.h"
+
 #include <iostream>
 #pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console")
 using namespace std;
@@ -14,6 +16,8 @@ class playGround : public gameNode
 {
 private:
 	
+	Player* _Player;
+
 public:
 	playGround();
 	~playGround();

@@ -15,6 +15,15 @@ PlayLeftIdle* PlayLeftIdle::GetInstance()
 	return _Instance;
 }
 
+void PlayLeftIdle::BattleStart(Player* player)
+{
+}
+
+void PlayLeftIdle::Idle(Player* player)
+{
+	
+}
+
 void PlayLeftIdle::Walk(Player* player)
 {
 	cout << "¾¾¹ß" << endl;
@@ -54,6 +63,14 @@ PlayRightIdle* PlayRightIdle::GetInstance()
 	return _Instance;
 }
 
+void PlayRightIdle::BattleStart(Player* player)
+{
+}
+
+void PlayRightIdle::Idle(Player* player)
+{
+}
+
 void PlayRightIdle::Walk(Player* player)
 {
 }
@@ -82,3 +99,8 @@ void PlayRightIdle::StandUp(Player* player)
 {
 }
 //////////////////////¾ÆÀÌµé
+
+void State::Render(Player* player)
+{
+	
+}

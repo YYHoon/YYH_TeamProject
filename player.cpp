@@ -7,7 +7,7 @@ Player::Player()
 	_State = PlayLeftIdle::GetInstance();
 }
 
-HRESULT Player::Init()
+void Player::PlayerImageAniStting()
 {
 	IMAGEMANAGER->addFrameImage("PlayerBattleStart", "Player/Kyoko_BattleStart.bmp", 2964, 420, 26, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("PlayerIdle", "Player/Kyoko_Idle.bmp", 1440, 450, 12, 2, true, RGB(255, 0, 255));
@@ -30,9 +30,9 @@ HRESULT Player::Init()
 
 	//배틀스타트
 	int lBattleStart[] = { 25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0 };
-	KEYANIMANAGER->addArrayFrameAnimation("PlayerLeftBattleStart", "PlayerBattleStart", lBattleStart, 26, 6, false);
+	KEYANIMANAGER->addArrayFrameAnimation("PlayerLeftBattleStart", "PlayerBattleStart", lBattleStart, 26, 15, false);
 	int rBattleStart[] = { 26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51 };
-	KEYANIMANAGER->addArrayFrameAnimation("PlayerRightBattleStart", "PlayerBattleStart", rBattleStart, 26, 6, false);
+	KEYANIMANAGER->addArrayFrameAnimation("PlayerRightBattleStart", "PlayerBattleStart", rBattleStart, 26, 15, false);
 
 	//아이들
 	int lIdele[] = { 11,10,9,8,7,6,5,4,3,2,1,0 };
@@ -128,13 +128,87 @@ HRESULT Player::Init()
 	int rDap[] = { 25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49 };
 	KEYANIMANAGER->addArrayFrameAnimation("PlayerRightDap", "PlayerDap", rDap, 25, 6, false);
 
+}
+
+HRESULT Player::Init()
+{
+	PlayerImageAniStting();
+
+	_Center.x = 200;
+	_Center.y = 500;
+	_Speed = 5;
+	_Left = false;
+
+	BattleStart();
+
+
 	return S_OK;
+
+}
+
+void Player::Update()
+{
+	PlayerKeyManager();
+	
+}
+
+void Player::Release()
+{
+}
+
+void Player::Render()
+{
+	_PlayerImg->aniRender(getMemDC(), _PlayerRc.left,
+		_PlayerRc.top, _PlayerAni);
+}
+
+void Player::PlayerKeyManager()
+{
+	
+	_PlayerRc.set(_Center.x - 30, _Center.y - 30, _Center.x + 30, _Center.y + 180);
+	if (KEYMANAGER->isStayKeyDown('A'))
+	{
+		_Left = true;
+		_Center.x -= _Speed;
+	}
+	if (KEYMANAGER->isOnceKeyUp('A'))
+	{
+		_Left = true;
+
+	}
+
+	if (KEYMANAGER->isStayKeyDown('D'))
+	{
+		_Left = false;
+		_Center.x += _Speed;
+	}
+	if (KEYMANAGER->isOnceKeyUp('D'))
+	{
+		_Left = false;
+
+	}
+
+
 
 }
 
 void Player::SetState(State* state)
 {
 	this->_State = state;
+}
+
+void Player::BattleStart()
+{
+	_PlayerImg = IMAGEMANAGER->findImage("PlayerBattleStart");
+	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerRightBattleStart");
+	_PlayerAni->start();
+	_State->BattleStart(this);
+	
+}
+
+void Player::Idle()
+{
+	_State->Idle(this);
 }
 
 void Player::Walk()
