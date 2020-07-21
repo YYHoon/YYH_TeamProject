@@ -23,7 +23,7 @@
     <ProjectGuid>{E2958D70-CFC8-4A1D-980D-12180D9B541F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>windowsAPI</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -188,6 +188,7 @@
     <ClInclude Include="StageManager.h" />
     <ClInclude Include="StageOneOfOne.h" />
     <ClInclude Include="StageOneStart.h" />
+    <ClInclude Include="State.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="timeManager.h" />
@@ -223,7 +224,7 @@
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="ParentStage.cpp" />
     <ClCompile Include="pixelCollsion.cpp" />
-    <ClCompile Include="player.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="progressBar.cpp" />
     <ClCompile Include="renderer.cpp" />
@@ -233,6 +234,7 @@
     <ClCompile Include="StageManager.cpp" />
     <ClCompile Include="StageOneOfOne.cpp" />
     <ClCompile Include="StageOneStart.cpp" />
+    <ClCompile Include="State.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

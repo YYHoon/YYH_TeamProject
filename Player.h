@@ -1,19 +1,41 @@
 #pragma once
-#include "Object.h"
+#include "gameNode.h"
 
-class Player : public Object
+class State;
+
+class Player : public gameNode
 {
-protected:
+private:
+	State* _State;
+
+	animation* _ani;
+
+	bool _Left;
 
 public:
+
 	Player();
-	~Player();
+	virtual ~Player() {};
 
-	HRESULT init(float spawnX, float spawnY);
-	void release();
-	void update();
-	void render();
+	virtual HRESULT Init();
+	//virtual void Update();
+	//virtual void Release();
+	//virtual void Render();
 
-	void move();
+
+
+	virtual void Walk();
+	virtual void Run();
+	virtual void Jump();
+	virtual void Attack();
+	virtual void Hit();
+	virtual void Stun();
+	virtual void StandUp();
+
+
+
+	inline bool GetPlayerDirection() { return _Left; }
+
+
+	void SetState(State* state);
 };
-

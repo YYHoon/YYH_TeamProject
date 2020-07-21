@@ -13,13 +13,13 @@ HRESULT StageManager::init()
 	_vStageName.push_back("Stage_One_Start");
 
 
-	ParentStage* Stage_One_One = new StageOneOfOne;
-	Stage_One_One->init();
-	_vStageName.push_back("Stage_One_One");
+	//ParentStage* Stage_One_One = new StageOneOfOne;
+	//Stage_One_One->init();
+	//_vStageName.push_back("Stage_One_One");
 
 
 	SCENEMANAGER->addScene(_vStageName[0], Stage_One_Start);
-	SCENEMANAGER->addScene(_vStageName[1], Stage_One_One);
+	//SCENEMANAGER->addScene(_vStageName[1], Stage_One_One);
 
 	_CurrentStageIndex = 0;
 

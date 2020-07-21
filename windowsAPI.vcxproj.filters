@@ -67,6 +67,12 @@
     <Filter Include="playGround\GameObject">
       <UniqueIdentifier>{e03f229c-8a01-41ec-a193-d2959f03c536}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\Player">
+      <UniqueIdentifier>{ac7d38ee-0b4c-4b06-88be-ef50f4ea4ea8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\Player\State">
+      <UniqueIdentifier>{74defe76-8895-4b4e-9379-1522e3ea8f5a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -207,14 +213,17 @@
     <ClInclude Include="StageOneStart.h">
       <Filter>playGround\StageManager</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>playGround\StageManager</Filter>
-    </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>playGround\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="ObjectManager.h">
       <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>playGround\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>playGround\Player\State</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -335,14 +344,17 @@
     <ClCompile Include="StageOneStart.cpp">
       <Filter>playGround\StageManager</Filter>
     </ClCompile>
-    <ClCompile Include="player.cpp">
-      <Filter>playGround\StageManager</Filter>
-    </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>playGround\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="ObjectManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>playGround\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>playGround\Player\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
