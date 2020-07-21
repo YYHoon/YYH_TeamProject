@@ -3,8 +3,6 @@
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 
-#include "singletonBase.h"
-
 #include <opencv2/core.hpp>
 #include <opencv2/videoio.hpp>
 #include <opencv2/highgui.hpp>
@@ -15,7 +13,6 @@ class MovieManager
 	Temp** m_pData;
 	int m_nChannels;
 	int m_nRows, m_nCols;
-
 
 public:
 	MovieManager() :m_pData(NULL), m_nChannels(1), m_nRows(0), m_nCols(0) {}

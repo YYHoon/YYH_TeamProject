@@ -16,7 +16,7 @@ LoadingScene::~LoadingScene()
 
 HRESULT LoadingScene::init()
 {
-	_background = IMAGEMANAGER->addFrameImage("Loading", "Image/Loading.bmp", 1600, 3600, 1, 4, false, RGB(255, 0, 255));
+	_background = IMAGEMANAGER->addFrameImage("Loading", "Image/UI/Loading.bmp", 1600, 3600, 1, 4, false, RGB(255, 0, 255));
 
 	_loadingBar = new progressBar;
 	_loadingBar->init(0, WINSIZEY - 10, WINSIZEX, 10);
@@ -50,7 +50,7 @@ void LoadingScene::update()
 
 	if (_currentCount == LOADINGMAX)
 	{
-		SCENEMANAGER->changeScene("MenuScene");
+		SCENEMANAGER->changeScene("VideoScene");
 	}
 	
 	_count++;
@@ -78,7 +78,7 @@ DWORD CALLBACK threadfunction(LPVOID lpParameter)
 		SOUNDMANAGER->play("IntroMusic", 0.3f);
 
 		//슬립 안걸면 넘 빠름...
-		Sleep(1);
+		Sleep(0);
 
 		loadingHelper->_currentCount++;
 	}

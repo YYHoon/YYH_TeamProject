@@ -2,6 +2,9 @@
 #include "gameNode.h"
 #include "LoadingScene.h"
 #include "IntroMenuScene.h"
+#include "SelectMenuScene.h"
+#include "VideoScene.h"
+#include "Movies.h"
 
 #include <iostream>
 #pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console")

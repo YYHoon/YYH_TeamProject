@@ -183,6 +183,12 @@
     <ClInclude Include="iniDataManager.h">
       <Filter>2DGameFramework\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="SelectMenuScene.h">
+      <Filter>playGround\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoScene.h">
+      <Filter>playGround\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -283,6 +289,12 @@
     </ClCompile>
     <ClCompile Include="iniDataManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectMenuScene.cpp">
+      <Filter>playGround\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoScene.cpp">
+      <Filter>playGround\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

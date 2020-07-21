@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "IntroMenuScene.h"
 
-
 IntroMenuScene::IntroMenuScene()
 {
 }
@@ -66,7 +65,7 @@ void IntroMenuScene::update()
 	{
 		if (IMAGEMANAGER->findImage("Intro_UI_ARROW")->getY() == 480)
 		{
-			SOUNDMANAGER->stop("IntroMusic");
+			SCENEMANAGER->changeScene("SelectMenuScene");
 		}
 
 		if (IMAGEMANAGER->findImage("Intro_UI_ARROW")->getY() == 540) PostQuitMessage(0);
@@ -76,7 +75,7 @@ void IntroMenuScene::update()
 
 void IntroMenuScene::render()
 {
-	IMAGEMANAGER->findImage("MenuBackGround")->render(getMemDC(), 0, 0);
+	IMAGEMANAGER->findImage("MenuBackGround")->render(getMemDC());
 	IMAGEMANAGER->findImage("KyokoIntro")->render(getMemDC(), _KyokoX, _KyokoY);
 	IMAGEMANAGER->findImage("MisakoIntro")->render(getMemDC(), _MisakoX, _MisakoY);
 	IMAGEMANAGER->findImage("Intro_UI_START")->alphaRender(getMemDC(), _AlphaValue);

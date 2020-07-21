@@ -1,17 +1,16 @@
 #pragma once
 #include "gameNode.h"
+#include "MovieManager.h"
+
+using namespace cv;
 
 class IntroMenuScene : public gameNode
 {
 private:
-
-	RECT _RcStart, _RcQuit;
-
 	float _MisakoX, _MisakoY;
 	float _KyokoX, _KyokoY;
 
 	int _AlphaValue;
-	int _FrameCount;
 
 public:
 	IntroMenuScene();
@@ -22,4 +21,5 @@ public:
 	void update();
 	void render();
 
+	int video();
 };
