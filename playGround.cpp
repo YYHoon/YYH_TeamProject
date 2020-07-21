@@ -17,7 +17,7 @@ HRESULT playGround::init()
 	gameNode::init(true);
 	
 	imginit(); // 모든 이미지를 여기다 넣도록
-<<<<<<< HEAD
+
 	SCENEMANAGER->addScene("LoadingScene", new LoadingScene);
 	SCENEMANAGER->addScene("MenuScene", new IntroMenuScene);
 	SCENEMANAGER->addScene("pixel", new pixelCollsion);
@@ -26,14 +26,13 @@ HRESULT playGround::init()
 	//SCENEMANAGER->changeScene("LoadingScene");
 	//SCENEMANAGER->changeScene("pixel");
 	SCENEMANAGER->changeScene("Shop");
-=======
+
 
 
 	_SM = new StageManager;
 	_SM->init();
 
-	
->>>>>>> 85955bae0e1d7cf3a9dccfdeba6b0252ca461a3a
+
 
 	return S_OK;
 }
@@ -48,14 +47,14 @@ void playGround::release()
 void playGround::update()
 {
 	gameNode::update();
-<<<<<<< HEAD
+
 	SCENEMANAGER->update();
 
 	
-=======
+
 
 	_SM->update();
->>>>>>> 85955bae0e1d7cf3a9dccfdeba6b0252ca461a3a
+
 }
 
 //그리기 전용
@@ -65,11 +64,9 @@ void playGround::render()
 	//=================================================
 
 	SCENEMANAGER->render();
-<<<<<<< HEAD
 
-=======
 	_SM->render();
->>>>>>> 85955bae0e1d7cf3a9dccfdeba6b0252ca461a3a
+
 
 	TIMEMANAGER->render(getMemDC());
 	//=============================================
@@ -78,7 +75,7 @@ void playGround::render()
 
 void playGround::imginit()
 {
-<<<<<<< HEAD
+
 	// UI
 	SOUNDMANAGER->addSound("IntroMusic", "Sounds/RCG_Intro_Song.wav", true, false);
 	IMAGEMANAGER->addImage("MenuBackGround", "Image/menuBackGround.bmp", WINSIZEX, WINSIZEY, false, BLACK);
@@ -105,11 +102,11 @@ void playGround::imginit()
 	//IMAGEMANAGER->addImage("Stage1_1", "image/Stage_BG/Stage1_1.bmp", 2400, 1064, false, RGB(0, 0, 0));
 	//IMAGEMANAGER->addImage("Stage1_2", "image/Stage_BG/Stage1_2.bmp", 2860, 1040, false, RGB(255, 0, 255));
 	//IMAGEMANAGER->addImage("Stage1_Boss", "image/Stage_BG/Stage1_Boss.bmp", 2769, 1280, false, RGB(255, 0, 255));
-=======
+
 	IMAGEMANAGER->addImage("Player", "image/Player/Kyoko_Shadow.bmp", 128, 38, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Stage1_Start", "image/Stage_BG/Stage1_Start.bmp", 2016, 672, false, RGB(0, 0, 0));
 	IMAGEMANAGER->addImage("Stage1_1", "image/Stage_BG/Stage1_1.bmp", 2400, 1064, false, RGB(0, 0, 0));
 	IMAGEMANAGER->addImage("Stage1_2", "image/Stage_BG/Stage1_2.bmp", 2860, 1040, false, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Stage1_Boss", "image/Stage_BG/Stage1_Boss.bmp", 2769, 1280, false, RGB(255, 0, 255));
->>>>>>> 85955bae0e1d7cf3a9dccfdeba6b0252ca461a3a
+
 }
