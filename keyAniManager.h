@@ -5,6 +5,11 @@
 class image;
 class animation;
 
+#define ANIBUFFER 20
+#define EXTRAANIBUFFER 10
+
+#define TOTALANIBUFFER ANIBUFFER + EXTRAANIBUFFER
+
 class keyAniManager : public singletonBase<keyAniManager>
 {
 private:

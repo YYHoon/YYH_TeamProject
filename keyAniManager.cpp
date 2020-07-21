@@ -50,8 +50,6 @@ void keyAniManager::addDefaultFrameAnimation(string animationKeyName, const char
 	ani->setFPS(fps);
 
 	_mTotalAnimation.insert(pair<string, animation*>(animationKeyName, ani));
-
-
 }
 
 void keyAniManager::addDefaultFrameAnimation(string animationKeyName, const char * imageKeyName, int fps, bool reverse, bool loop, void * cbFunction)
@@ -76,6 +74,64 @@ void keyAniManager::addDefaultFrameAnimation(string animationKeyName, const char
 	ani->setFPS(fps);
 
 	_mTotalAnimation.insert(pair<string, animation*>(animationKeyName, ani));
+
+}
+
+void keyAniManager::addDefaultFrameAnimation(string animationKeyName, const char* imageKeyName, int fps, bool reverse, bool loop, int buffer)
+{
+	image* img = IMAGEMANAGER->findImage(imageKeyName);
+	animation* ani = new animation;
+
+	arrAnimations vAniBuffer;
+	HAnimations mArrAnimation;
+
+	for (int i = 0; i < buffer; ++i)
+	{
+		vAniBuffer.push_back(new animation);
+		vAniBuffer[i]->init(img->getWidth(), img->getHeight(), img->getFrameWidth(), img->getFrameHeight());
+		vAniBuffer[i]->setDefPlayFrame(reverse, loop);
+		vAniBuffer[i]->setFPS(fps);
+	}
+	mArrAnimation.insert(pair<string, arrAnimations>(animationKeyName, vAniBuffer));
+	_vTomtalAnimation.push_back(mArrAnimation);
+}
+
+void keyAniManager::addDefaultFrameAnimation(string animationKeyName, const char* imageKeyName, int fps, bool reverse, bool loop, void* cbFunction, int buffer)
+{
+	image* img = IMAGEMANAGER->findImage(imageKeyName);
+	animation* ani = new animation;
+
+	arrAnimations vAniBuffer;
+	HAnimations mArrAnimation;
+
+	for (int i = 0; i < buffer; ++i)
+	{
+		vAniBuffer.push_back(new animation);
+		vAniBuffer[i]->init(img->getWidth(), img->getHeight(), img->getFrameWidth(), img->getFrameHeight());
+		vAniBuffer[i]->setDefPlayFrame(reverse, loop, CALLBACK_FUNCTION(cbFunction));
+		vAniBuffer[i]->setFPS(fps);
+	}
+	mArrAnimation.insert(pair<string, arrAnimations>(animationKeyName, vAniBuffer));
+	_vTomtalAnimation.push_back(mArrAnimation);
+}
+
+void keyAniManager::addDefaultFrameAnimation(string animationKeyName, const char* imageKeyName, int fps, bool reverse, bool loop, void* cbFunction, void* obj, int buffer)
+{
+	image* img = IMAGEMANAGER->findImage(imageKeyName);
+	animation* ani = new animation;
+
+	arrAnimations vAniBuffer;
+	HAnimations mArrAnimation;
+
+	for (int i = 0; i < buffer; ++i)
+	{
+		vAniBuffer.push_back(new animation);
+		vAniBuffer[i]->init(img->getWidth(), img->getHeight(), img->getFrameWidth(), img->getFrameHeight());
+		vAniBuffer[i]->setDefPlayFrame(reverse, loop, CALLBACK_FUNCTION_PARAMETER(cbFunction),obj);
+		vAniBuffer[i]->setFPS(fps);
+	}
+	mArrAnimation.insert(pair<string, arrAnimations>(animationKeyName, vAniBuffer));
+	_vTomtalAnimation.push_back(mArrAnimation);
 }
 
 void keyAniManager::addArrayFrameAnimation(string animationKeyName, const char * imageKeyName, int * arr, int arrLen, int fps, bool loop)
@@ -114,6 +170,63 @@ void keyAniManager::addArrayFrameAnimation(string animationKeyName, const char *
 	_mTotalAnimation.insert(pair<string, animation*>(animationKeyName, ani));
 }
 
+void keyAniManager::addArrayFrameAnimation(string animationKeyName, const char* imageKeyName, int* arr, int arrLen, int fps, bool loop, int buffer)
+{
+	image* img = IMAGEMANAGER->findImage(imageKeyName);
+	animation* ani = new animation;
+
+	arrAnimations vAniBuffer;
+	HAnimations mArrAnimation;
+
+	for (int i = 0; i < buffer; ++i)
+	{
+		vAniBuffer.push_back(new animation);
+		vAniBuffer[i]->init(img->getWidth(), img->getHeight(), img->getFrameWidth(), img->getFrameHeight());
+		vAniBuffer[i]->setPlayFrame(arr, arrLen, loop);
+		vAniBuffer[i]->setFPS(fps);
+	}
+	mArrAnimation.insert(pair<string, arrAnimations>(animationKeyName, vAniBuffer));
+	_vTomtalAnimation.push_back(mArrAnimation);
+}
+
+void keyAniManager::addArrayFrameAnimation(string animationKeyName, const char* imageKeyName, int* arr, int arrLen, int fps, bool loop, void* cbFunction, int buffer)
+{
+	image* img = IMAGEMANAGER->findImage(imageKeyName);
+	animation* ani = new animation;
+
+	arrAnimations vAniBuffer;
+	HAnimations mArrAnimation;
+
+	for (int i = 0; i < buffer; ++i)
+	{
+		vAniBuffer.push_back(new animation);
+		vAniBuffer[i]->init(img->getWidth(), img->getHeight(), img->getFrameWidth(), img->getFrameHeight());
+		vAniBuffer[i]->setPlayFrame(arr, arrLen, loop, CALLBACK_FUNCTION(cbFunction));
+		vAniBuffer[i]->setFPS(fps);
+	}
+	mArrAnimation.insert(pair<string, arrAnimations>(animationKeyName, vAniBuffer));
+	_vTomtalAnimation.push_back(mArrAnimation);
+}
+
+void keyAniManager::addArrayFrameAnimation(string animationKeyName, const char* imageKeyName, int* arr, int arrLen, int fps, bool loop, void* cbFunction, void* obj, int buffer)
+{
+	image* img = IMAGEMANAGER->findImage(imageKeyName);
+	animation* ani = new animation;
+
+	arrAnimations vAniBuffer;
+	HAnimations mArrAnimation;
+
+	for (int i = 0; i < buffer; ++i)
+	{
+		vAniBuffer.push_back(new animation);
+		vAniBuffer[i]->init(img->getWidth(), img->getHeight(), img->getFrameWidth(), img->getFrameHeight());
+		vAniBuffer[i]->setPlayFrame(arr, arrLen, loop, CALLBACK_FUNCTION_PARAMETER(cbFunction), obj);
+		vAniBuffer[i]->setFPS(fps);
+	}
+	mArrAnimation.insert(pair<string, arrAnimations>(animationKeyName, vAniBuffer));
+	_vTomtalAnimation.push_back(mArrAnimation);
+}
+
 void keyAniManager::addCoordinateFrameAnimation(string animationKeyName, const char * imageKeyName, int start, int end, int fps, bool reverse, bool loop)
 {
 	image* img = IMAGEMANAGER->findImage(imageKeyName);
@@ -148,6 +261,63 @@ void keyAniManager::addCoordinateFrameAnimation(string animationKeyName, const c
 	ani->setFPS(fps);
 
 	_mTotalAnimation.insert(pair<string, animation*>(animationKeyName, ani));
+}
+
+void keyAniManager::addCoordinateFrameAnimation(string animationKeyName, const char* imageKeyName, int start, int end, int fps, bool reverse, bool loop, int buffer)
+{
+	image* img = IMAGEMANAGER->findImage(imageKeyName);
+	animation* ani = new animation;
+
+	arrAnimations vAniBuffer;
+	HAnimations mArrAnimation;
+
+	for (int i = 0; i < buffer; ++i)
+	{
+		vAniBuffer.push_back(new animation);
+		vAniBuffer[i]->init(img->getWidth(), img->getHeight(), img->getFrameWidth(), img->getFrameHeight());
+		vAniBuffer[i]->setPlayFrame(start, end, reverse, loop);
+		vAniBuffer[i]->setFPS(fps);
+	}
+	mArrAnimation.insert(pair<string, arrAnimations>(animationKeyName, vAniBuffer));
+	_vTomtalAnimation.push_back(mArrAnimation);
+}
+
+void keyAniManager::addCoordinateFrameAnimation(string animationKeyName, const char* imageKeyName, int start, int end, int fps, bool reverse, bool loop, void* cbFunction, int buffer)
+{
+	image* img = IMAGEMANAGER->findImage(imageKeyName);
+	animation* ani = new animation;
+
+	arrAnimations vAniBuffer;
+	HAnimations mArrAnimation;
+
+	for (int i = 0; i < buffer; ++i)
+	{
+		vAniBuffer.push_back(new animation);
+		vAniBuffer[i]->init(img->getWidth(), img->getHeight(), img->getFrameWidth(), img->getFrameHeight());
+		vAniBuffer[i]->setPlayFrame(start, end, reverse, loop, CALLBACK_FUNCTION(cbFunction));
+		vAniBuffer[i]->setFPS(fps);
+	}
+	mArrAnimation.insert(pair<string, arrAnimations>(animationKeyName, vAniBuffer));
+	_vTomtalAnimation.push_back(mArrAnimation);
+}
+
+void keyAniManager::addCoordinateFrameAnimation(string animationKeyName, const char* imageKeyName, int start, int end, int fps, bool reverse, bool loop, void* cbFunction, void* obj, int buffer)
+{
+	image* img = IMAGEMANAGER->findImage(imageKeyName);
+	animation* ani = new animation;
+
+	arrAnimations vAniBuffer;
+	HAnimations mArrAnimation;
+
+	for (int i = 0; i < buffer; ++i)
+	{
+		vAniBuffer.push_back(new animation);
+		vAniBuffer[i]->init(img->getWidth(), img->getHeight(), img->getFrameWidth(), img->getFrameHeight());
+		vAniBuffer[i]->setPlayFrame(start, end, reverse, loop, CALLBACK_FUNCTION_PARAMETER(cbFunction), obj);
+		vAniBuffer[i]->setFPS(fps);
+	}
+	mArrAnimation.insert(pair<string, arrAnimations>(animationKeyName, vAniBuffer));
+	_vTomtalAnimation.push_back(mArrAnimation);
 }
 
 void keyAniManager::start(string animationKeyName)
