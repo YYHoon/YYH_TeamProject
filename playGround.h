@@ -1,21 +1,24 @@
 #pragma once
 #include "gameNode.h"
+<<<<<<< HEAD
 #include "LoadingScene.h"
 #include "IntroMenuScene.h"
 #include "pixelCollsion.h"
 #include "Shop.h"
+=======
+#include "StageManager.h"
+>>>>>>> 85955bae0e1d7cf3a9dccfdeba6b0252ca461a3a
 
 #include <iostream>
 #pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console")
 using namespace std;
 
-#define MAGENTA RGB(255,0,255)
-#define BLACK RGB(0,0,0)
 
 class playGround : public gameNode
 {
 private:
-	
+	StageManager* _SM;
+
 public:
 	playGround();
 	~playGround();
