@@ -39,18 +39,18 @@ void Player::move()
 {
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
-		_Center.x -= 3;
+		_Center.x -= 10;
 	}
 	if(KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
-		_Center.x += 3;
+		_Center.x += 10;
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_DOWN))
 	{
-		_Center.y += 3;
+		_Center.y += 10;
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_UP))
 	{
-		_Center.y -= 3;
+		_Center.y -= 10;
 	}
 }

@@ -90,4 +90,6 @@ void playGround::imginit()
 	//Obstacle
 	IMAGEMANAGER->addImage("Pillar", "image/Obstacle/Pillar.bmp", 207, 864, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Desk", "image/Obstacle/desk.bmp", 168, 159, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("VendingMachine", "image/Obstacle/VendingMachine.bmp", 300, 300, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("VendingMachineDestroyed", "image/Obstacle/VendingMachineDestroyed.bmp", 300, 296, true, RGB(255, 0, 255));
 }

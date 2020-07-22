@@ -171,9 +171,11 @@
     <ClInclude Include="imageManager.h" />
     <ClInclude Include="iniDataManager.h" />
     <ClInclude Include="IntroMenuScene.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="keyAniManager.h" />
     <ClInclude Include="keyManager.h" />
     <ClInclude Include="LoadingScene.h" />
+    <ClInclude Include="Merge.h" />
     <ClInclude Include="MovieManager.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectManager.h" />
@@ -203,6 +205,7 @@
     <ClInclude Include="txtData.h" />
     <ClInclude Include="UnDestructiblePillar.h" />
     <ClInclude Include="utils.h" />
+    <ClInclude Include="VendingMachine.h" />
     <ClInclude Include="windowsAPI.h" />
   </ItemGroup>
   <ItemGroup>
@@ -226,9 +229,11 @@
     <ClCompile Include="imageManager.cpp" />
     <ClCompile Include="iniDataManager.cpp" />
     <ClCompile Include="IntroMenuScene.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="keyAniManager.cpp" />
     <ClCompile Include="keyManager.cpp" />
     <ClCompile Include="LoadingScene.cpp" />
+    <ClCompile Include="Merge.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="ParentsObstacle.cpp" />
@@ -258,6 +263,7 @@
     <ClCompile Include="txtData.cpp" />
     <ClCompile Include="UnDestructiblePillar.cpp" />
     <ClCompile Include="utils.cpp" />
+    <ClCompile Include="VendingMachine.cpp" />
     <ClCompile Include="windowsAPI.cpp" />
   </ItemGroup>
   <ItemGroup>

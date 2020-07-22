@@ -7,7 +7,7 @@ HRESULT StageManager::init()
 {
 	_Player = new Player;
 	_Player->init();
-	
+
 	ParentStage* _Stage1_Start = new Stage1_Start;
 	_Stage1_Start->SetPlayerMemoryAddressLink(_Player);
 	_Stage1_Start->init();
@@ -68,10 +68,11 @@ void StageManager::MoveStage()
 		{
 			_CurrentStageIndex += 1;
 			SCENEMANAGER->changeScene(_vStageName[_CurrentStageIndex]);
+			_vStage[_CurrentStageIndex - 1]->release();
 
 			if (i == 0)
 			{
-				_Player->SetCenter(1270, 400);
+				_Player->SetCenter(1270, 500);
 			}
 			if (i == 1)
 			{
@@ -87,11 +88,15 @@ void StageManager::MoveStage()
 		{
 			_CurrentStageIndex -= 1;
 			SCENEMANAGER->changeScene(_vStageName[_CurrentStageIndex]);
+			if (i == 1)
+			{
+				_Player->SetCenter(1370, 400);
+			}
 		}
 	}
 
 
 
-	cout << _CurrentStageIndex << endl;
 
 }
+
