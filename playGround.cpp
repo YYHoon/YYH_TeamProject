@@ -22,10 +22,10 @@ HRESULT playGround::init()
 
 	img = IMAGEMANAGER->addFrameImage("CLIdle", "image/enemy/cr/cl_idle.bmp", 0, 0, 1980, 432, 12, 2, true, RGB(255, 0, 255));
 	int RIdle[] = { 23,22,21,20,19,18,17,16,15,14,13,12 };
-	_ClMotion = KEYANIMANAGER->addArrayFrameAnimation("ClRightIdle", "CLIdle", RIdle, 12, 10, true,10);
+	KEYANIMANAGER->addArrayFrameAnimation("ClRightIdle", "CLIdle", RIdle, 12, 10, true);
 
 
-	// KEYANIMANAGER->findAnimation("ClRightIdle");
+	_ClMotion = KEYANIMANAGER->findAnimation("ClRightIdle");
 	//_ClMotion->start();
 	KEYANIMANAGER->StartB("ClRightIdle");
 	//SCENEMANAGER->changeScene("LoadingScene");
@@ -44,6 +44,7 @@ void playGround::update()
 	gameNode::update();
 	SCENEMANAGER->update();
 	KEYANIMANAGER->update();
+	
 }
 
 //그리기 전용
@@ -54,7 +55,6 @@ void playGround::render()
 
 	//SCENEMANAGER->render();
 	img->aniRender(getMemDC(), 200, 200, _ClMotion);
-	cout << "확인" << endl;
 
 	TIMEMANAGER->render(getMemDC());
 	//=============================================

@@ -530,7 +530,5 @@ void image::alphaRender(HDC hdc, int destX, int destY, BYTE alpha)
 
 void image::aniRender(HDC hdc, int destX, int destY, animation* ani)
 {
-	cout << "È®ÀÎ3" << endl;
-
 	render(hdc, destX, destY, ani->getFramePos().x, ani->getFramePos().y, ani->getFrameWidth(), ani->getFrameHeight());
 }
