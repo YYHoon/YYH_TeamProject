@@ -45,6 +45,7 @@ void playGround::update()
 	//SCENEMANAGER->update();
 	_Player->Update();
 	_EnM->Updata();
+
 }
 
 //그리기 전용
@@ -56,7 +57,6 @@ void playGround::render()
 	//SCENEMANAGER->render();
 	_EnM->Render();
 	_Player->Render();
-
 
 	TIMEMANAGER->render(getMemDC());
 	//=============================================
@@ -76,7 +76,6 @@ void playGround::imginit()
 	IMAGEMANAGER->addImage("Intro_UI_ARROW", "Image/UI_title_arrow.bmp", 53, 61, true, MAGENTA);
 	IMAGEMANAGER->addImage("Intro_UI_LOGO", "Image/UI_TITLE_LOGO.bmp", 573, 317, true, MAGENTA);
 	
-
 	// StageManager
 	//IMAGEMANAGER->addImage("Player", "image/Player/Kyoko_Shadow.bmp", 128, 38, true, RGB(255, 0, 255));
 	//IMAGEMANAGER->addImage("Stage1_Start", "image/Stage_BG/Stage1_Start.bmp", 2016, 672, false, RGB(0, 0, 0));

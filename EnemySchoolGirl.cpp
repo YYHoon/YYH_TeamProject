@@ -13,14 +13,17 @@ HRESULT EnemySchoolGirl::Init(POINTFLOAT pt)
 	SgAniInit();
 	SgAniSet(SgIdle);
 
-	_SgCenter.x = pt.x;
-	_SgCenter.y = pt.y;
+	/*_SgCenter.x = pt.x;
+	_SgCenter.y = pt.y;*/
+
+	_SgCenterX = pt.x;
+	_SgCenterY = pt.y;
 
 	//적 그림자
 	_SgShadowImage = IMAGEMANAGER->addImage("Showdow", "image/enemy/Enemy_Shadow.bmp", 128, 38, true, RGB(255, 0, 255));
 
 	//_SgShadow = RectMakeCenter(pt.x, pt.y, _SgShadowImage->getWidth(), _SgShadowImage->getHeight());
-	_SgShadow.MYRectMakeCenter(_SgCenter.x, _SgCenter.y, _SgShadowImage->getWidth(), _SgShadowImage->getHeight());
+	_SgShadow.MYRectMakeCenter(_SgCenterX, _SgCenterY, _SgShadowImage->getWidth(), _SgShadowImage->getHeight());
 
 	_ShadowX = (_SgShadow.left + _SgShadow.right) / 2;
 	_ShadowY = (_SgShadow.top + _SgShadow.bottom) / 2;
@@ -33,6 +36,7 @@ HRESULT EnemySchoolGirl::Init(POINTFLOAT pt)
 	_EnemyX = (_SgHit.left + _SgHit.right) / 2;
 	_EnemyY = (_SgHit.top + _SgHit.bottom) / 2;
 
+	_SgFindRect.MYRectMakeCenter(_EnemyX, _EnemyY, 800, 800);
 
 	//_SgAttackExploration = RectMakeCenter(_EnemyX, _EnemyY, 200, 200);
 	_SgAttackExploration.MYRectMakeCenter(_EnemyX, _EnemyY, 200, 200);
@@ -40,21 +44,22 @@ HRESULT EnemySchoolGirl::Init(POINTFLOAT pt)
 	_Hp = 10.f;
 	_Speed = 3.0f;
 	
+
 	return S_OK;
 }
 
 void EnemySchoolGirl::Release()
 {
+
 }
 
 void EnemySchoolGirl::Update()
 {	
-	
-	SgAniSet(SgHold);
+	if(_Hp < 3) SgAniSet(SgBegging);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-
-	_SgShadow.MYRectMakeCenter(_SgCenter.x, _SgCenter.y, _SgShadowImage->getWidth(), _SgShadowImage->getHeight());
+	SgState();
+	_SgShadow.MYRectMakeCenter(_SgCenterX, _SgCenterY, _SgShadowImage->getWidth(), _SgShadowImage->getHeight());
 
 	_ShadowX = (_SgShadow.left + _SgShadow.right) / 2;
 	_ShadowY = (_SgShadow.top + _SgShadow.bottom) / 2;
@@ -62,6 +67,8 @@ void EnemySchoolGirl::Update()
 
 	_EnemyX = (_SgHit.left + _SgHit.right) / 2;
 	_EnemyY = (_SgHit.top + _SgHit.bottom) / 2;
+
+	_SgFindRect.MYRectMakeCenter(_EnemyX, _EnemyY, 1000, 600);
 
 	if (_IsRight)
 	{
@@ -72,15 +79,101 @@ void EnemySchoolGirl::Update()
 		_SgAttackExploration.MYRectMakeCenter(_SgHit.left, _EnemyY, 200, 200);
 	}
 ///////////////////////////////////////////////////////////////////////////////////////////////
-
 	KEYANIMANAGER->update();
 }
 
 void EnemySchoolGirl::Render()
 {
+	_SgFindRect.render(getMemDC());
 	_SgAttackExploration.render(getMemDC());
+	_SgShadow.render(getMemDC());
 	_SgShadowImage->render(getMemDC(), _SgShadow.left, _SgShadow.top);
+	_SgHit.render(getMemDC());
 	_SgImage->aniRender(getMemDC(), _SgHit.left, _SgHit.top, _SgAni);
+}
+
+void EnemySchoolGirl::SgState()
+{
+	if (_IsRight)
+	{
+		switch (_SgState)
+		{
+		case SgBegging:
+			break;
+		case SgBlownback:
+			break;
+		case SgDazed:
+			break;
+		case SgGethit:
+			break;
+		case SgHold:
+			break;
+		case SgHoldhit:
+			break;
+		case SgHoldrelrase:
+			break;
+		case SgIdle:
+			break;
+		case SgJumpKnee:
+			break;
+		case SgKick:
+			break;
+		case SgKnockdown:
+			break;
+		case SgRun:
+			_SgCenterX += 6;
+			break;
+		case SgJab:
+			break;
+		case SgTaunt:
+			break;
+		case SgWalk:
+			_SgCenterX += 3;
+			break;
+		case SgWeaponSwing:
+			break;
+		}
+	}
+	else
+	{
+		switch (_SgState)
+		{
+		case SgBegging:
+			break;
+		case SgBlownback:
+			break;
+		case SgDazed:
+			break;
+		case SgGethit:
+			break;
+		case SgHold:
+			break;
+		case SgHoldhit:
+			break;
+		case SgHoldrelrase:
+			break;
+		case SgIdle:
+			break;
+		case SgJumpKnee:
+			break;
+		case SgKick:
+			break;
+		case SgKnockdown:
+			break;
+		case SgRun:
+			_SgCenterX -= 6;
+			break;
+		case SgJab:
+			break;
+		case SgTaunt:
+			break;
+		case SgWalk:
+			_SgCenterX -= 3;
+			break;
+		case SgWeaponSwing:
+			break;
+		}
+	}
 }
 
 void EnemySchoolGirl::SmHitHP(float damge)
@@ -92,10 +185,10 @@ void EnemySchoolGirl::SgAniInit()
 {
 	//여학생 항복
 	IMAGEMANAGER->addFrameImage("SgBegging", "image/enemy/sg/sg_begging.bmp", 0, 0, 378, 336, 3, 2, true, RGB(255, 0, 255));
-	int Sg_R_Begging[] = { 0,1,2 };
-	KEYANIMANAGER->addArrayFrameAnimation("SgRBegging", "SgBegging", Sg_R_Begging, 3, 10, true);
-	int Sg_L_Begging[] = { 5,4,3 };
-	KEYANIMANAGER->addArrayFrameAnimation("SgLBegging", "SgBegging", Sg_L_Begging, 3, 10, true);
+	int Sg_R_Begging[] = { 1,2 };
+	KEYANIMANAGER->addArrayFrameAnimation("SgRBegging", "SgBegging", Sg_R_Begging, 2, 10, true);
+	int Sg_L_Begging[] = { 4,3 };
+	KEYANIMANAGER->addArrayFrameAnimation("SgLBegging", "SgBegging", Sg_L_Begging, 2, 10, true);
 
 	//여학생 다운
 	IMAGEMANAGER->addFrameImage("SgBlowback", "image/enemy/sg/sg_blownback.bmp", 0, 0, 2925, 1080, 13, 6, true, RGB(255, 0, 255));

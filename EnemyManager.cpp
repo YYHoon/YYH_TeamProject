@@ -50,20 +50,41 @@ void EnemyManager::Updata()
 	{
 		_vCheerLeader[i]->Update();
 
-		//여기서 부터 치어리더 상태정의~
+		if (_vCheerLeader[i]->GetClState() == CLIdle) continue;
+
+		if ((_vCheerLeader[i]->GetClState() == CLWalk))
+		{
+			_vCheerLeader[i]->AniSet(CLWalk);
+		}
 	}
 
 	for (int j = 0; j < _vSchoolMan.size(); j++)
 	{
 		_vSchoolMan[j]->Update();
 
-		//여기서 부터 남학생 상태정의~
+		if (_vSchoolMan[j]->GetSmState() == SmIdle) continue;
+
+		if (_vSchoolMan[j]->GetSmState() == SmWalk)
+		{
+			_vSchoolMan[j]->SmAniSet(SmWalk);
+		}
 	}
 
 	for (int k = 0; k < _vSchoolGirl.size(); k++)
 	{
 		_vSchoolGirl[k]->Update();
-
+		
+		if (_vSchoolGirl[k]->GetSgState() == SgIdle) continue;
+		
+		if (_vSchoolGirl[k]->GetSgState() == SgWalk)
+		{
+			_vSchoolGirl[k]->SgAniSet(SgWalk);
+		}
+		
+		if (isCollision(_vSchoolGirl[k]->GetSgFind(), _Player->GetShadowRect()))
+		{
+			_vSchoolGirl[k]->GetSgState() == SgWalk;
+		}
 	}
 }
 

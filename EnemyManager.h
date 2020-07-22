@@ -41,7 +41,7 @@ public:
 	void Updata();
 	void Render();
 
-	typedef vector<EnemyCheerLeader*> vCheerLeader;
-	typedef vector<EnemySchoolMan*>   vSchoolMan;
-	typedef vector<EnemySchoolGirl*>  vSchoolGirl;
+	vector<EnemyCheerLeader*> GetEnemyCheerLeader() { return _vCheerLeader; }
+	vector<EnemySchoolMan*>   GetEnemySchoolMan()   { return _vSchoolMan; }
+	vector<EnemySchoolGirl*>  GetEnemySchoolGirl()	{ return _vSchoolGirl; }
 };

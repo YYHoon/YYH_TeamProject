@@ -13,14 +13,14 @@ HRESULT EnemyCheerLeader::Init(POINTFLOAT pt)
 	AniInit();
 	AniSet(CLIdle);
 
-	_ClCenter.x	= pt.x;
-	_ClCenter.y = pt.y;
+	_ClCenterX = pt.x;
+	_ClCenterY = pt.y;
 
 
 	//적 그림자
 	_EnemyShadowImage = IMAGEMANAGER->addImage("Showdow", "image/enemy/Enemy_Shadow.bmp", 128, 38, true, RGB(255, 0, 255));
 
-	_EnemyShadow.MYRectMakeCenter(_ClCenter.x, _ClCenter.y, _EnemyShadowImage->getWidth(), _EnemyShadowImage->getHeight());
+	_EnemyShadow.MYRectMakeCenter(_ClCenterX, _ClCenterY, _EnemyShadowImage->getWidth(), _EnemyShadowImage->getHeight());
 
 	//RectMakeCenter( pt.x, pt.y, _EnemyShadowImage->getWidth(), _EnemyShadowImage->getHeight());
 	
@@ -36,7 +36,7 @@ HRESULT EnemyCheerLeader::Init(POINTFLOAT pt)
 	_EnemyX = (_Enemy.left + _Enemy.right) / 2;
 	_EnemyY = (_Enemy.top + _Enemy.bottom) / 2;
 
-
+	_EnemyClSearching.MYRectMakeCenter(_EnemyX, _EnemyY, 800, 800);
 	_EnemyAttackExploration.MYRectMakeCenter(_EnemyX, _EnemyY, 200, 200);
 	//= RectMakeCenter(_EnemyX, _EnemyY, 400, 200);
 
@@ -60,8 +60,9 @@ void EnemyCheerLeader::Update()
 	if (KEYMANAGER->isOnceKeyDown('B')) AniSet(CLBackflip);
 
 ////////////////////////////////////////////////////////////////////////////////////
+	State();
 
-	_EnemyShadow.MYRectMakeCenter(_ClCenter.x, _ClCenter.y, _EnemyShadowImage->getWidth(), _EnemyShadowImage->getHeight());
+	_EnemyShadow.MYRectMakeCenter(_ClCenterX, _ClCenterY, _EnemyShadowImage->getWidth(), _EnemyShadowImage->getHeight());
 
 	_ShadowX = (_EnemyShadow.left + _EnemyShadow.right) / 2;
 	_ShadowY = (_EnemyShadow.top + _EnemyShadow.bottom) / 2;
@@ -71,6 +72,7 @@ void EnemyCheerLeader::Update()
 	_EnemyX = (_Enemy.left + _Enemy.right) / 2;
 	_EnemyY = (_Enemy.top + _Enemy.bottom) / 2;
 
+	_EnemyClSearching.MYRectMakeCenter(_EnemyX, _EnemyY, 1000, 600);
 
 	if (_IsRight)
 	{
@@ -86,6 +88,7 @@ void EnemyCheerLeader::Update()
 
 void EnemyCheerLeader::Render()
 {
+	_EnemyClSearching.render(getMemDC());
 	_EnemyAttackExploration.render(getMemDC());
 	_EnemyShadowImage->render(getMemDC(), _EnemyShadow.left, _EnemyShadow.top);
 	_EnemyImage->aniRender(getMemDC(), _Enemy.left, _Enemy.top, _CLAni);
@@ -445,6 +448,91 @@ void EnemyCheerLeader::AniSet(CLSTATE state)
 			_CLAni->start();
 			_ClState = CLWeaponSwing;
 			break;
+		}
+	}
+}
+
+void EnemyCheerLeader::State()
+{
+	if (_IsRight)
+	{
+		switch (_ClState)
+		{
+		case CLIdle:
+			break;
+		case CLBegging:
+			break;
+		case CLBlowback:
+			break;
+		case CLDazed:
+			break;
+		case CLFalling:
+			break;
+		case CLHolding:
+			break;
+		case CLHoldingrelease:
+			break;
+		case CLJump:
+			break;
+		case CLKnockdown:
+			break;
+		case CLWalk:
+			_ClCenterX += 3;
+			break;
+		case CLRun:
+			_ClCenterX += 6;
+			break;
+		case CLJab:
+			break;
+		case CLSpinpom:
+			break;
+		case CLDoublepom:
+			break;
+		case CLBackflip:
+			break;
+		case CLWeaponSwing:
+			break;
+		}
+	}
+	else
+	{
+		switch (_ClState)
+		{
+		case CLIdle:
+			break;
+		case CLBegging:
+			break;
+		case CLBlowback:
+			break;
+		case CLDazed:
+			break;
+		case CLFalling:
+			break;
+		case CLHolding:
+			break;
+		case CLHoldingrelease:
+			break;
+		case CLJump:
+			break;
+		case CLKnockdown:
+			break;
+		case CLWalk:
+			_ClCenterX -= 3;
+			break;
+		case CLRun:
+			_ClCenterX -= 6;
+			break;
+		case CLJab:
+			break;
+		case CLSpinpom:
+			break;
+		case CLDoublepom:
+			break;
+		case CLBackflip:
+			break;
+		case CLWeaponSwing:
+			break;
+
 		}
 	}
 }

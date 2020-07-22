@@ -10,8 +10,8 @@ HRESULT EnemySchoolMan::Init(POINTFLOAT pt)
 {
 	_IsRight = true;
 
-	_SmCenter.x	= pt.x;
-	_SmCenter.y = pt.y; 
+	_SmCenterX = pt.x;
+	_SmCenterY = pt.y; 
 
 	SmAniInit();
 	SmAniSet(SmIdle);
@@ -20,7 +20,7 @@ HRESULT EnemySchoolMan::Init(POINTFLOAT pt)
 	_SmShadowImage = IMAGEMANAGER->addImage("Showdow", "image/enemy/Enemy_Shadow.bmp", 128, 38, true, RGB(255, 0, 255));
 
 	//_SmShadow = RectMakeCenter(pt.x, pt.y, _SmShadowImage->getWidth(), _SmShadowImage->getHeight());
-	_SmShadow.MYRectMakeCenter(_SmCenter.x, _SmCenter.y, _SmShadowImage->getWidth(), _SmShadowImage->getHeight());
+	_SmShadow.MYRectMakeCenter(_SmCenterX, _SmCenterY, _SmShadowImage->getWidth(), _SmShadowImage->getHeight());
 
 	_ShadowX = (_SmShadow.left + _SmShadow.right) / 2;
 	_ShadowY = (_SmShadow.top + _SmShadow.bottom) / 2;
@@ -33,7 +33,7 @@ HRESULT EnemySchoolMan::Init(POINTFLOAT pt)
 	_EnemyX = (_SmHit.left + _SmHit.right) / 2;
 	_EnemyY = (_SmHit.top +  _SmHit.bottom) / 2;
 
-
+	_SmFindRECT.MYRectMakeCenter(_EnemyX, _EnemyY, 800, 800);
 	//_SmPlayerExploration = RectMakeCenter(_EnemyX, _EnemyY, 800, 500);
 
 	//_SmAttackExploration = RectMakeCenter(_SmHit.left, _EnemyY, 200, 200);
@@ -388,6 +388,90 @@ void EnemySchoolMan::SmAniSet(SMSTATE state)
 	}
 }
 
+void EnemySchoolMan::SmState()
+{
+	if (_IsRight)
+	{
+		switch (_SmState)
+		{
+		case SmBegging:
+			break;
+		case SmBlownback:
+			break;
+		case SmDazed:
+			break;
+		case SmGethit:
+			break;
+		case SmHoldhit:
+			break;
+		case SmHoldrelrase:
+			break;
+		case SmIdle:
+			break;
+		case SmJumpPunch:
+			break;
+		case SmKick:
+			break;
+		case SmKnockdown:
+			break;
+		case SmRun:
+			break;
+		case SmSideKick:
+			break;
+		case SmStPunch:
+			break;
+		case SmTaunt:
+			break;
+		case SmUpercut:
+			break;
+		case SmWalk:
+			break;
+		case SmWeaponSwing:
+			break;
+		}
+	}
+	else
+	{
+		switch (_SmState)
+		{
+		case SmBegging:
+			break;
+		case SmBlownback:
+			break;
+		case SmDazed:
+			break;
+		case SmGethit:
+			break;
+		case SmHoldhit:
+			break;
+		case SmHoldrelrase:
+			break;
+		case SmIdle:
+			break;
+		case SmJumpPunch:
+			break;
+		case SmKick:
+			break;
+		case SmKnockdown:
+			break;
+		case SmRun:
+			break;
+		case SmSideKick:
+			break;
+		case SmStPunch:
+			break;
+		case SmTaunt:
+			break;
+		case SmUpercut:
+			break;
+		case SmWalk:
+			break;
+		case SmWeaponSwing:
+			break;
+		}
+	}
+}
+
 void EnemySchoolMan::Release()
 {
 }
@@ -398,7 +482,7 @@ void EnemySchoolMan::Update()
 
 /////////////////////////////////////////////////////////////////////////////
 
-	_SmShadow.MYRectMakeCenter(_SmCenter.x, _SmCenter.y, _SmShadowImage->getWidth(), _SmShadowImage->getHeight());
+	_SmShadow.MYRectMakeCenter(_SmCenterX, _SmCenterY, _SmShadowImage->getWidth(), _SmShadowImage->getHeight());
 
 	_ShadowX = (_SmShadow.left + _SmShadow.right) / 2;
 	_ShadowY = (_SmShadow.top + _SmShadow.bottom) / 2;
@@ -407,6 +491,8 @@ void EnemySchoolMan::Update()
 
 	_EnemyX = (_SmHit.left + _SmHit.right) / 2;
 	_EnemyY = (_SmHit.top + _SmHit.bottom) / 2;
+
+	_SmFindRECT.MYRectMakeCenter(_EnemyX, _EnemyY, 1000, 600);
 
 	if (_IsRight)
 	{
@@ -423,6 +509,7 @@ void EnemySchoolMan::Update()
 
 void EnemySchoolMan::Render()
 {
+	_SmFindRECT.render(getMemDC());
 	_SmAttackExploration.render(getMemDC());
 	_SmShadowImage->render(getMemDC(), _SmShadow.left, _SmShadow.top);
 	_SmImage->aniRender(getMemDC(), _SmHit.left, _SmHit.top, _SmAni);

@@ -36,8 +36,10 @@ private:
 	MYRECT _SgHit;					//적 캐릭터 및 충돌처리용 사각형
 	MYRECT _SgAttackExploration;	//플레이어 들어올시 공격하는 영역
 	MYRECT _SgAttack;				//적이 공격시 충돌처리용
+	MYRECT _SgFindRect;
 
-	POINTFLOAT _SgCenter;
+
+	float _SgCenterX, _SgCenterY;
 
 	float _ShadowX, _ShadowY;  //그림자의 중점(캐릭터그릴떄 사용)
 
@@ -62,15 +64,25 @@ public:
 	virtual void Update();
 	virtual void Render();
 
-	float GetSchoolGirlCenterX() { return _SgCenter.x; } //중점	
-	float GetSchoolGirlCenterY() { return _SgCenter.y; } //중점	
+	void SgState();
+
+	float GetSchoolGirlCenterX() { return _SgCenterX; } //중점	
+	float GetSchoolGirlCenterY() { return _SgCenterY; } //중점	
+	float GetChaseAngle() { return _ChaseAngle; }
 	MYRECT GetSchoolGirlHit() { return _SgHit; }	//피격영역
-
 	MYRECT GetSchoolGirlAttackExplor() { return _SgAttackExploration; } //플레이어가 들어올시 공격
-
 	MYRECT GetSchoolGirlAttack() { return _SgAttack; } //공격시 영역
+	MYRECT GetSgFind() { return _SgFindRect; }
+
 
 	SGSTATE GetSgState() { return _SgState; }
+
+
+	POINTFLOAT GetPt() { POINTFLOAT temp; temp.x = _SgCenterX; temp.y = _SgCenterY; return temp; }
+
+	
+	void SetCenterX(float x) { _SgCenterX = x; }
+	void SetCenterY(float y) { _SgCenterY = y; }
 
 	void SmHitHP(float damge);
 

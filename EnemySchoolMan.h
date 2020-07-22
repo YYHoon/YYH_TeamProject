@@ -36,8 +36,9 @@ private:
 	MYRECT _SmHit;				    //적 캐릭터 및 충돌처리용 사각형
 	MYRECT _SmAttackExploration;	//플레이어 들어올시 공격하는 영역
 	MYRECT _SmAttack;				//적이 공격시 충돌처리용
+	MYRECT _SmFindRECT;
 
-	POINTFLOAT _SmCenter;
+	float _SmCenterX, _SmCenterY;
 
 	float _ShadowX, _ShadowY; //그림자의 중점 (EnemyCore에 사용)
 
@@ -56,15 +57,26 @@ public:
 	void SmAniInit();
 	void SmAniSet(SMSTATE state);
 
+	void SmState();
+
 	virtual void Release();
 	virtual void Update();
 	virtual void Render();
 
-	float GetSmCenterX() { return _SmCenter.x; }
-	float GetSmCenterY() { return _SmCenter.y; }
+	float GetSmCenterX() { return _SmCenterX;  }
+	float GetSmCenterY() { return _SmCenterY; }
 	MYRECT GetSchoolManHit() { return _SmHit; } //피격영역
+	MYRECT GetSchoolManAttackExploration() { return _SmAttackExploration; }
+	MYRECT GetSchoolManAttack() { return _SmAttack; }
+	MYRECT GetSMFindRect() { return _SmFindRECT; }
 
-	SMSTATE getSmState() { return _SmState; }
+	SMSTATE GetSmState() { return _SmState; }
+
+	POINTFLOAT GetSmPt() { POINTFLOAT temp; temp.x = _SmCenterX; temp.y = _SmCenterY; return temp; }
+
+	void SetSmCenterX(float x) { _SmCenterX	= x;}
+	void SetSmCenterY(float y) { _SmCenterY = y;}
+
 
 	void SmHitHP(float damge);
 

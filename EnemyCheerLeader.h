@@ -35,8 +35,10 @@ private:
 	MYRECT _Enemy;						//적 캐릭터 및 충돌처리용 사각형
 	MYRECT _EnemyAttackExploration;		//플레이어 들어올시 공격하는 영역
 	MYRECT _EnemyAttack;				//적을 공격시 충돌처리용
+	MYRECT _EnemyClSearching;
 
-	POINTFLOAT _ClCenter;
+
+	float _ClCenterX, _ClCenterY;
 
 	float _ShadowX, _ShadowY; //그림자의 중점 (Enemy에 사용)
 
@@ -56,15 +58,25 @@ public:
 	void AniInit();
 	void AniSet(CLSTATE state);
 
+	void State();
+
 	virtual void Release();
 	virtual void Update();
 	virtual void Render();
 
-	float GetEnemyX() { return _ClCenter.x; }
-	float GetEnemyY() { return _ClCenter.y; }
+	float GetEnemyX() { return _ClCenterX; }
+	float GetEnemyY() { return _ClCenterY; }
 	MYRECT GetEnemyHit() { return _Enemy; } //피격영역
+	MYRECT GetEnemyAttackExploration() { return _EnemyAttackExploration; } //플레이어가 들어올시 공격
+	MYRECT GetCheerLeaderAttack() { return _EnemyAttack; } //공격시 영역
+	MYRECT GetCheerLeaderSearching() { return _EnemyClSearching; }
 
-	CLSTATE getClState() { return _ClState; }
+	CLSTATE GetClState() { return _ClState; }
+
+	POINTFLOAT GetCLPt() { POINTFLOAT temp; temp.x = _ClCenterX; temp.y = _ClCenterY; return temp; }
+
+	void SetCenterX(float x) { _ClCenterX = x; }
+	void SetCenterY(float y) { _ClCenterY = y; }
 
 	void hitHP(float damge);
 

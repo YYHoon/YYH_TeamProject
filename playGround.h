@@ -3,7 +3,6 @@
 #include "LoadingScene.h"
 #include "IntroMenuScene.h"
 #include "EnemyManager.h"
-
 #include "Player.h"
 
 #include <iostream>
@@ -16,7 +15,7 @@ using namespace std;
 class playGround : public gameNode
 {
 private:
-	
+
 	Player* _Player;
 	EnemyManager* _EnM;
 	vector<TagEnemySpawn> _spawn;
