@@ -1,2 +1,6 @@
 C:\Users\KGA_5\Desktop\팀포폴\x64\Debug\windowsAPI.exe
 C:\Users\KGA_5\Desktop\팀포폴\x64\Debug\windowsAPI.pdb
+C:\Users\KGA_12\Desktop\TeamP\x64\Debug\windowsAPI.exe
+C:\Users\KGA_12\Desktop\TeamP\x64\Debug\windowsAPI.pdb
+C:\Users\KGA_12\Desktop\새 폴더\x64\Debug\windowsAPI.exe
+C:\Users\KGA_12\Desktop\새 폴더\x64\Debug\windowsAPI.pdb

@@ -1,11 +1,14 @@
-﻿  ParentStage.cpp
-  Player.cpp
-  playGround.cpp
-  StageManager.cpp
-  State.cpp
-C:\Users\KGA_5\Desktop\팀포폴\State.cpp(38,61): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\KGA_5\Desktop\팀포폴\State.cpp(38,45): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  windowsAPI.cpp
-C:\Users\KGA_5\Desktop\팀포폴\windowsAPI.cpp(92,16): warning C4244: 'return': 'WPARAM'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  코드를 생성하고 있습니다...
-  windowsAPI.vcxproj -> C:\Users\KGA_5\Desktop\팀포폴\x64\Debug\windowsAPI.exe
+﻿  EnemySchoolGirl.cpp
+C:\Users\KGA_12\Desktop\새 폴더\EnemySchoolGirl.cpp(23,108): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\KGA_12\Desktop\새 폴더\EnemySchoolGirl.cpp(23,79): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\KGA_12\Desktop\새 폴더\EnemySchoolGirl.cpp(31,130): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\KGA_12\Desktop\새 폴더\EnemySchoolGirl.cpp(31,102): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\KGA_12\Desktop\새 폴더\EnemySchoolGirl.cpp(72,108): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\KGA_12\Desktop\새 폴더\EnemySchoolGirl.cpp(72,79): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\KGA_12\Desktop\새 폴더\EnemySchoolGirl.cpp(76,130): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\KGA_12\Desktop\새 폴더\EnemySchoolGirl.cpp(76,102): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\KGA_12\Desktop\새 폴더\EnemySchoolGirl.cpp(97,62): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\KGA_12\Desktop\새 폴더\EnemySchoolGirl.cpp(97,46): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\KGA_12\Desktop\새 폴더\EnemySchoolGirl.cpp(98,53): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\KGA_12\Desktop\새 폴더\EnemySchoolGirl.cpp(98,40): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  windowsAPI.vcxproj -> C:\Users\KGA_12\Desktop\새 폴더\x64\Debug\windowsAPI.exe

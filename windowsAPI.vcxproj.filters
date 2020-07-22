@@ -55,9 +55,6 @@
     <Filter Include="playGround\Enemy">
       <UniqueIdentifier>{65f197e3-2256-4ae4-8e80-29c97a48398e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="playGround\Enemy\EnemyState">
-      <UniqueIdentifier>{9f80abe4-129d-4aa3-8a86-43bc14835110}</UniqueIdentifier>
-    </Filter>
     <Filter Include="playGround\UI">
       <UniqueIdentifier>{fe524eec-3206-43f3-a31a-0fbb05d4eaa1}</UniqueIdentifier>
     </Filter>
@@ -162,24 +159,6 @@
     <ClInclude Include="Event.h">
       <Filter>2DGameFramework\Event</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>playGround\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyAllState.h">
-      <Filter>playGround\Enemy\EnemyState</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyIdleState.h">
-      <Filter>playGround\Enemy\EnemyState</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyMove.h">
-      <Filter>playGround\Enemy\EnemyState</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyRunState.h">
-      <Filter>playGround\Enemy\EnemyState</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyState.h">
-      <Filter>playGround\Enemy\EnemyState</Filter>
-    </ClInclude>
     <ClInclude Include="pixelCollsion.h">
       <Filter>playGround\PixelColl</Filter>
     </ClInclude>
@@ -224,6 +203,18 @@
     </ClInclude>
     <ClInclude Include="State.h">
       <Filter>playGround\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyManager.h">
+      <Filter>playGround\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemySchoolMan.h">
+      <Filter>playGround\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemySchoolGirl.h">
+      <Filter>playGround\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyCheerLeader.h">
+      <Filter>playGround\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -299,21 +290,6 @@
     <ClCompile Include="Event.cpp">
       <Filter>2DGameFramework\Event</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>playGround\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyIdleState.cpp">
-      <Filter>playGround\Enemy\EnemyState</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyMove.cpp">
-      <Filter>playGround\Enemy\EnemyState</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyRunState.cpp">
-      <Filter>playGround\Enemy\EnemyState</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyState.cpp">
-      <Filter>playGround\Enemy\EnemyState</Filter>
-    </ClCompile>
     <ClCompile Include="pixelCollsion.cpp">
       <Filter>playGround\PixelColl</Filter>
     </ClCompile>
@@ -355,6 +331,18 @@
     </ClCompile>
     <ClCompile Include="State.cpp">
       <Filter>playGround\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemySchoolMan.cpp">
+      <Filter>playGround\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyCheerLeader.cpp">
+      <Filter>playGround\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemySchoolGirl.cpp">
+      <Filter>playGround\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyManager.cpp">
+      <Filter>playGround\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
