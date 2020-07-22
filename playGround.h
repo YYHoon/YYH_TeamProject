@@ -2,6 +2,7 @@
 #include "gameNode.h"
 #include "LoadingScene.h"
 #include "IntroMenuScene.h"
+#include "EnemyManager.h"
 
 #include "Player.h"
 
@@ -17,6 +18,9 @@ class playGround : public gameNode
 private:
 	
 	Player* _Player;
+	EnemyManager* _EnM;
+	vector<TagEnemySpawn> _spawn;
+
 
 public:
 	playGround();
@@ -28,6 +32,7 @@ public:
 	virtual void render();
 
 	void imginit();
+	void setEnemy();
 	
 };
 

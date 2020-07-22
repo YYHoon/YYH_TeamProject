@@ -23,13 +23,19 @@ HRESULT playGround::init()
 	//
 	//SCENEMANAGER->changeScene("LoadingScene");
 	CAMERAMANAGER->setConfig(0, 0, 1600, 900, 0, 0, 1600, 900);
+
+	setEnemy();
+	_EnM = new EnemyManager;
+	_EnM->Init(_spawn);
+
+
 	return S_OK;
 }
 
 //메모리 해제
 void playGround::release()
 {
-	
+	SAFE_DELETE(_EnM);
 }
 
 //연산
@@ -38,6 +44,7 @@ void playGround::update()
 	gameNode::update();
 	//SCENEMANAGER->update();
 	_Player->Update();
+	_EnM->Updata();
 }
 
 //그리기 전용
@@ -47,7 +54,9 @@ void playGround::render()
 	//=================================================
 
 	//SCENEMANAGER->render();
+	_EnM->Render();
 	_Player->Render();
+
 
 	TIMEMANAGER->render(getMemDC());
 	//=============================================
@@ -77,4 +86,17 @@ void playGround::imginit()
 
 	//플레이어 이미지 셋팅
 	_Player->PlayerImageAniStting();
+}
+
+void playGround::setEnemy()
+{
+	_spawn.clear();
+
+	TagEnemySpawn _EnSpawn;
+
+	_EnSpawn.EmType = SchoolGirl;
+	_EnSpawn.pt.x = 500;
+	_EnSpawn.pt.y = 500;
+	_spawn.push_back(_EnSpawn);
+
 }

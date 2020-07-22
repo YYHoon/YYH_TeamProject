@@ -17,6 +17,13 @@ inline POINT PointMake(int x, int y)
 	return pt;
 }
 
+inline POINTFLOAT PointFloatMake(float x, float y)
+{
+	POINTFLOAT pt = { x,y };
+
+	return pt;
+}
+
 //================= 렉트 관련 함수 ===================
 //left, top 기준으로 렉트 탄생(left, top, 가로크기, 세로크기)
 inline RECT RectMake(int x, int y, int width, int height)
