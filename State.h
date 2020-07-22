@@ -44,7 +44,7 @@ public:
 
 	inline State* GetState() { return _State; }
 	inline bool GetAniIsPlay() { return _PlayerAni->isPlay(); }
-	inline MYRECT GetRect() { return _PlayerRc; }
+	
 
 
 

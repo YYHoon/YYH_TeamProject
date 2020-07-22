@@ -11,6 +11,7 @@ private:
 	image* _Shadow;
 	POINTFLOAT _Center;
 	MYRECT _ShadowRc;
+	MYRECT _PlayerHitRc;
 	float _Speed;
 	float _Gravity;
 	float _Jump;
@@ -50,8 +51,8 @@ public:
 	inline float GetShadowCenterX() { return _Center.x; }
 	inline float GetShadowCenterY() { return _Center.y; }
 	inline POINTFLOAT GetShadowCenterPoint() { return _Center; }
-	inline MYRECT GetShadowRect() { return _ShadowRc; }
-	//inline MYRECT GetPlayerRect() { return _State->GetRect(); }//ㅡㄹ레이어피격렉트
+	inline MYRECT GetShadowRect() { return _ShadowRc; }		//플레이어그림자렉트(기준)
+	inline MYRECT GetPlayerRect() { return _PlayerHitRc; } //플레이어피격렉트
 
 
 	inline void SetShadowCenterX(POINTFLOAT XY) {

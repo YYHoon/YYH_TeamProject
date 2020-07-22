@@ -153,7 +153,7 @@ HRESULT Player::Init()
 		_Center.y - (_Shadow->getHeight() * 0.5f),
 		_Center.x + (_Shadow->getWidth() * 0.5f),
 		_Center.y + (_Shadow->getHeight() * 0.5f));
-
+	_PlayerHitRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
 
 
 	_State->SetCenterXY(_Center);
@@ -182,6 +182,7 @@ void Player::Update()
 		_Center.y - (_Shadow->getHeight() * 0.5f),
 		_Center.x + (_Shadow->getWidth() * 0.5f),
 		_Center.y + (_Shadow->getHeight() * 0.5f));
+	_PlayerHitRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
 	_State->SetCenterXY(_Center);
 }
 
@@ -201,6 +202,7 @@ void Player::Render()
 
 void Player::DebugRender()
 {
+	CAMERAMANAGER->rectangle(getMemDC(), _PlayerHitRc);
 	CAMERAMANAGER->rectangle(getMemDC(), _ShadowRc);
 	_State->DebugRender();
 }

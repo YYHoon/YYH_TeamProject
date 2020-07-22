@@ -27,7 +27,10 @@ HRESULT State::Init()
 
 void State::Update()
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
+	_PlayerRc.set(_Center.x-(_PlayerImg->getFrameWidth()*0.5f),
+		_Center.y-_PlayerImg->getFrameHeight(),
+		_Center.x+(_PlayerImg->getFrameWidth()*0.5f),
+		_Center.y);
 	KEYANIMANAGER->update();
 	cout << _PlayerRc.left << endl;
 }
@@ -40,7 +43,7 @@ void State::Render()
 
 void State::DebugRender()
 {
-	CAMERAMANAGER->rectangle(getMemDC(), _PlayerRc);
+	//CAMERAMANAGER->rectangle(getMemDC(), _PlayerRc);
 }
 
 void State::Release()
@@ -105,8 +108,12 @@ void BattleStart::DiveAttack(Player* player)
 
 void BattleStart::Default(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
+	
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerBattleStart");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerRightBattleStart");
 	_PlayerAni->start();
 
@@ -125,32 +132,44 @@ PlayLeftIdle* PlayLeftIdle::GetInstance()
 
 void PlayLeftIdle::Walk(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerWalk");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerLeftWalk");
 	_PlayerAni->start();
 }
 
 void PlayLeftIdle::Attack1(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerAttack1");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerLeftAttack1");
 	_PlayerAni->start();
 }
 
 void PlayLeftIdle::Attack2(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerAttack2");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerLeftAttack2");
 	_PlayerAni->start();
 }
 
 void PlayLeftIdle::Attack3(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerAttack3");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerLeftAttack3");
 	_PlayerAni->start();
 }
@@ -161,24 +180,34 @@ void PlayLeftIdle::StandUp(Player* player)
 
 void PlayLeftIdle::Skill1(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
+	
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerHKick");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerHurrKick");
 	_PlayerAni->start();
 }
 
 void PlayLeftIdle::Skill2(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerDap");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerLeftDap");
 	_PlayerAni->start();
 }
 
 void PlayLeftIdle::Guard(Player* Player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerGuard");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerLeftGuard");
 	_PlayerAni->start();
 }
@@ -193,8 +222,11 @@ void PlayLeftIdle::DiveAttack(Player* player)
 
 void PlayLeftIdle::Default(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerIdle");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerLeftIdle");
 	_PlayerAni->start();
 }
@@ -213,32 +245,45 @@ PlayRightIdle* PlayRightIdle::GetInstance()
 
 void PlayRightIdle::Walk(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerWalk");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerRightWalk");
 	_PlayerAni->start();
 }
 
 void PlayRightIdle::Attack1(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
+	
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerAttack1");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerRighttAttack1");
 	_PlayerAni->start();
 }
 
 void PlayRightIdle::Attack2(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerAttack2");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerRightAttack2");
 	_PlayerAni->start();
 }
 
 void PlayRightIdle::Attack3(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerAttack3");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerRight3");
 	_PlayerAni->start();
 }
@@ -249,24 +294,34 @@ void PlayRightIdle::StandUp(Player* player)
 
 void PlayRightIdle::Skill1(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerHKick");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerHurrKick");
 	_PlayerAni->start();
 }
 
 void PlayRightIdle::Skill2(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerDap");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerRightDap");
 	_PlayerAni->start();
 }
 
 void PlayRightIdle::Guard(Player* Player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
+
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerGuard");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerRightGuard");
 	_PlayerAni->start();
 }
@@ -281,8 +336,12 @@ void PlayRightIdle::DiveAttack(Player* player)
 
 void PlayRightIdle::Default(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
+
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerIdle");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerRightIdle");
 	_PlayerAni->start();
 }
@@ -343,16 +402,23 @@ void PlayLeftRun::GameOver(Player* player)
 
 void PlayLeftRun::DiveAttack(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerDiveAttack");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerLeftDiveAttack");
 	_PlayerAni->start();
 }
 
 void PlayLeftRun::Default(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
+	
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerRun");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerLeftRun");
 	_PlayerAni->start();
 }
@@ -406,16 +472,24 @@ void PlayRightRun::GameOver(Player* player)
 
 void PlayRightRun::DiveAttack(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
+	
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerDiveAttack");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerRightDiveAttack");
 	_PlayerAni->start();
 }
 
 void PlayRightRun::Default(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
+	
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerRun");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerRightRun");
 	_PlayerAni->start();
 }
@@ -473,8 +547,12 @@ void PlayLeftJump::DiveAttack(Player* player)
 
 void PlayLeftJump::Default(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
+	
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerJump");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerLeftJump");
 	_PlayerAni->start();
 }
@@ -531,8 +609,12 @@ void PlayRightJump::DiveAttack(Player* player)
 
 void PlayRightJump::Default(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
+	
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerJump");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerRightJump");
 	_PlayerAni->start();
 }
@@ -589,8 +671,12 @@ void PlayLeftFall::DiveAttack(Player* player)
 
 void PlayLeftFall::Default(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
+	
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerFall");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerLeftFall");
 	_PlayerAni->start();
 }
@@ -647,8 +733,12 @@ void PlayRightFall::DiveAttack(Player* player)
 
 void PlayRightFall::Default(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
+	
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerFall");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerRightFall");
 	_PlayerAni->start();
 }
@@ -705,8 +795,12 @@ void PlayLeftHit::DiveAttack(Player* player)
 
 void PlayLeftHit::Default(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
+	
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerHit");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerLeftHit");
 	_PlayerAni->start();
 }
@@ -763,8 +857,11 @@ void PlayRightHit::DiveAttack(Player* player)
 
 void PlayRightHit::Default(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerHit");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerRightHit");
 	_PlayerAni->start();
 }
@@ -813,8 +910,12 @@ void PlayLeftDown::Guard(Player* Player)
 
 void PlayLeftDown::GameOver(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
+	
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerGameOver");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerLeftGameOver");
 	_PlayerAni->start();
 }
@@ -825,8 +926,11 @@ void PlayLeftDown::DiveAttack(Player* player)
 
 void PlayLeftDown::Default(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerDown");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerLeftDown");
 	_PlayerAni->start();
 }
@@ -875,8 +979,12 @@ void PlayRightDown::Guard(Player* Player)
 
 void PlayRightDown::GameOver(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
+	
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerGameOver");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerLeftGameOver");
 	_PlayerAni->start();
 }
@@ -887,8 +995,11 @@ void PlayRightDown::DiveAttack(Player* player)
 
 void PlayRightDown::Default(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerDown");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerRightDown");
 	_PlayerAni->start();
 }
@@ -945,8 +1056,11 @@ void PlayLeftStun::DiveAttack(Player* player)
 
 void PlayLeftStun::Default(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerStnned");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerLeftStnned");
 	_PlayerAni->start();
 }
@@ -1003,8 +1117,12 @@ void PlayRightStun::DiveAttack(Player* player)
 
 void PlayRightStun::Default(Player* player)
 {
-	_PlayerRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
+
 	_PlayerImg = IMAGEMANAGER->findImage("PlayerStnned");
+	_PlayerRc.set(_Center.x - (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y - _PlayerImg->getFrameHeight(),
+		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
+		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerRightStnned");
 	_PlayerAni->start();
 }
