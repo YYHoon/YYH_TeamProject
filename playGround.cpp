@@ -17,6 +17,7 @@ HRESULT playGround::init()
 	gameNode::init(true);
 	_Player = new Player;
 	_Player->Init();
+
 	imginit(); // 모든 이미지를 여기다 넣도록
 	//SCENEMANAGER->addScene("LoadingScene", new LoadingScene);
 	//SCENEMANAGER->addScene("MenuScene", new IntroMenuScene);
@@ -43,7 +44,7 @@ void playGround::update()
 //그리기 전용
 void playGround::render()
 {	
-	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, BLACKNESS);
+	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
 	//=================================================
 
 	//SCENEMANAGER->render();

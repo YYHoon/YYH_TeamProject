@@ -4,6 +4,7 @@
 
 Player::Player()
 {
+	
 	_State = BattleStart::GetInstance();
 }
 
@@ -15,7 +16,7 @@ void Player::PlayerImageAniStting()
 	IMAGEMANAGER->addFrameImage("PlayerRun", "Player/Kyoko_Run.bmp", 2736, 384, 16, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("PlayerAttack1", "Player/Kyoko_ComboAttack1.bmp", 1548, 390, 6, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("PlayerAttack2", "Player/Kyoko_ComboAttack2.bmp", 1869, 402, 7, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("PlayerAttack3", "Player/Kyoko_ComboAttack3.bmp", 2970, 462, 8, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("PlayerAttack3", "Player/Kyoko_ComboAttack3.bmp", 2970, 462, 9, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("PlayerHit", "Player/Kyoko_Hit.bmp", 246, 348, 2, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("PlayerDown", "Player/Kyoko_Down.bmp", 4896, 366, 24, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("PlayerGuard", "Player/Kyoko_Guard.bmp", 351, 378, 3, 2, true, RGB(255, 0, 255));
@@ -55,21 +56,21 @@ void Player::PlayerImageAniStting()
 
 	//평타1
 	int lAttack1[] = { 5,4,3,2,1,0 };
-	KEYANIMANAGER->addArrayFrameAnimation("PlayerLeftAttack1", "PlayerAttack1", lAttack1, 6, 6, false);
+	KEYANIMANAGER->addArrayFrameAnimation("PlayerLeftAttack1", "PlayerAttack1", lAttack1, 6, 10, false);
 	int rAttack1[] = { 6,7,8,9,10,11 };
-	KEYANIMANAGER->addArrayFrameAnimation("PlayerRightAttack1", "PlayerAttack1", rAttack1, 6, 6, false);
+	KEYANIMANAGER->addArrayFrameAnimation("PlayerRightAttack1", "PlayerAttack1", rAttack1, 6, 10, false);
 
 	//평타2
 	int lAttack2[] = { 6,5,4,3,2,1,0 };
-	KEYANIMANAGER->addArrayFrameAnimation("PlayerLeftAttack2", "PlayerAttack2", lAttack2, 7, 6, false);
+	KEYANIMANAGER->addArrayFrameAnimation("PlayerLeftAttack2", "PlayerAttack2", lAttack2, 7, 10, false);
 	int rAttack2[] = { 7,8,9,10,11,12,13 };
-	KEYANIMANAGER->addArrayFrameAnimation("PlayerRightAttack2", "PlayerAttack2", rAttack2, 7, 6, false);
+	KEYANIMANAGER->addArrayFrameAnimation("PlayerRightAttack2", "PlayerAttack2", rAttack2, 7, 10, false);
 
 	//평타3
-	int lAttack3[] = { 7,6,5,4,3,2,1,0 };
-	KEYANIMANAGER->addArrayFrameAnimation("PlayerLeftAttack3", "PlayerAttack3", lAttack3, 8, 6, false);
-	int rAttack3[] = { 8,9,10,11,12,13,14,15 };
-	KEYANIMANAGER->addArrayFrameAnimation("PlayerRightAttack3", "PlayerAttack3", rAttack3, 8, 6, false);
+	int lAttack3[] = { 8,7,6,5,4,3,2,1,0 };
+	KEYANIMANAGER->addArrayFrameAnimation("PlayerLeftAttack3", "PlayerAttack3", lAttack3, 9, 10, false);
+	int rAttack3[] = { 9,10,11,12,13,14,15,16,17 };
+	KEYANIMANAGER->addArrayFrameAnimation("PlayerRightAttack3", "PlayerAttack3", rAttack3, 9, 10, false);
 
 	//피격
 	int lHit[] = { 1,0 };
@@ -154,27 +155,36 @@ HRESULT Player::Init()
 		_Center.x + (_Shadow->getWidth() * 0.5f),
 		_Center.y + (_Shadow->getHeight() * 0.5f));
 	_PlayerHitRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
-
-
+	_Speed = 5;
+	_MoveLR = MOVELR::NON;
+	_MoveUD = MOVEUD::NON;
+	
 	_State->SetCenterXY(_Center);
 	_State->Init();
 	Default();
 
-
+	
 	return S_OK;
 
 }
 
 void Player::Update()
 {
-	PlayerKeyMove();
-	_State->Update();
-
 	if (_State == BattleStart::GetInstance() && !_State->GetAniIsPlay())
 	{
 		_State = PlayRightIdle::GetInstance();
 		Default();
 	}
+	if (_State != BattleStart::GetInstance())
+	{
+		AttackUpdate();
+		PlayerKeyMove();
+	}
+	
+	if (_State != BattleStart::GetInstance() && !_State->GetAniIsPlay())Default();
+	
+
+	if (_AttackCount < 0 || _AttackCount>2)_AttackCount = 0;
 
 
 
@@ -184,6 +194,7 @@ void Player::Update()
 		_Center.y + (_Shadow->getHeight() * 0.5f));
 	_PlayerHitRc.set(_Center.x - 64, _Center.y - 200, _Center.x + 64, _Center.y);
 	_State->SetCenterXY(_Center);
+	_State->Update();
 }
 
 void Player::Release()
@@ -193,9 +204,9 @@ void Player::Release()
 void Player::Render()
 {
 	if (KEYMANAGER->isStayKeyDown(VK_SPACE))DebugRender();
+	
+	_Shadow->render(getMemDC(),_ShadowRc.left,_ShadowRc.top);
 	_State->Render();
-
-
 
 
 }
@@ -209,23 +220,150 @@ void Player::DebugRender()
 
 void Player::PlayerKeyMove()
 {
-	if (KEYMANAGER->isStayKeyDown('A'))
+	
+	if (KEYMANAGER->isOnceKeyDown('A'))
 	{
-		_Center.x -= 3;
+		_State = PlayLeftIdle::GetInstance();
+		Walk();
+		_State->SetLeft(true);
+		_MoveLR = MOVELR::LEFT_WALK;
+		_LClickTime++;
 	}
-	if (KEYMANAGER->isStayKeyDown('S'))
+	if (KEYMANAGER->isOnceKeyUp('A'))
 	{
-		_Center.y += 2;
+		_State = PlayLeftIdle::GetInstance();
+		Default();
+		_MoveLR = MOVELR::NON;
+		_LClickTime++;
 	}
-	if (KEYMANAGER->isStayKeyDown('D'))
+	
+	if (KEYMANAGER->isOnceKeyDown('D'))
 	{
-		_Center.x += 3;
+		_State = PlayRightIdle::GetInstance();
+		Walk();
+		_State->SetLeft(false);
+		_MoveLR = MOVELR::RIGHT_WALK;
+		
 	}
-	if (KEYMANAGER->isStayKeyDown('W'))
+	if (KEYMANAGER->isOnceKeyUp('D'))
 	{
-		_Center.y -= 2;
+		Default();
+		_MoveLR = MOVELR::NON;
+	}
+
+	if (KEYMANAGER->isOnceKeyDown('W'))
+	{
+		if (_State->GetLeft())_State = PlayLeftIdle::GetInstance();
+		if (!_State->GetLeft())_State = PlayRightIdle::GetInstance();
+		Walk();
+		_MoveUD = MOVEUD::UP_WALK;
+	}
+	if (KEYMANAGER->isOnceKeyUp('W'))
+	{
+		_State->SetLeft(true);
+		_MoveUD = MOVEUD::NON;
+	}
+	if (KEYMANAGER->isOnceKeyDown('S'))
+	{
+		if (_State->GetLeft())_State = PlayLeftIdle::GetInstance();
+		if (!_State->GetLeft())_State = PlayRightIdle::GetInstance();
+		Walk();
+		_MoveUD = MOVEUD::DOWN_WALK;
+	}
+	if (KEYMANAGER->isOnceKeyUp('S'))
+	{
+
+		_MoveUD = MOVEUD::NON;
+	}
+	
+
+
+	MoveUpdate();
+}
+
+void Player::MoveUpdate()
+{
+	switch (_MoveLR)
+	{
+	case MOVELR::LEFT_WALK:
+		_Center.x -= _Speed;
+		break;
+	case MOVELR::RIGHT_WALK:
+		_Center.x += _Speed;
+		break;
+	case MOVELR::LEFT_RUN:
+		_Center.x -= _Speed*1.5f;
+		break;
+	case MOVELR::RIGHT_RUN:
+		_Center.x += _Speed*1.5f;
+		break;
+	case MOVELR::NON:
+		break;
+	}
+	switch (_MoveUD)
+	{
+	case MOVEUD::UP_WALK:
+		_Center.y -= (_Speed * 0.5f);
+		break;
+	case MOVEUD::DOWN_WALK:
+		_Center.y += (_Speed * 0.5f);
+		break;
+	case MOVEUD::UP_RUN:
+		_Center.y -= _Speed;
+		break;
+	case MOVEUD::DOWN_RUN:
+		_Center.y += _Speed;
+		break;
+	case MOVEUD::NON:
+		break;
 	}
 }
+
+void Player::AttackUpdate()
+{
+	if (KEYMANAGER->isOnceKeyDown('H'))
+	{
+		//if (_State->GetLeft())_State = PlayLeftIdle::GetInstance();
+		//if (!_State->GetLeft())_State = PlayRightIdle::GetInstance();
+		if (_AttackCount == 0 && _State->GetAniIndex() > 4)
+		{
+
+			Attack1();
+			cout << _State->GetAttRect().left << endl;
+			_AttackCount++;
+			_State->SetAttRect();
+		}
+		else if (_AttackCount == 1&&_State->GetAniIndex()>4)
+		{
+
+			Attack2();
+			cout << _State->GetAttRect().left << endl;
+			_AttackCount++;
+			_State->SetAttRect();
+		}
+
+		else if (_AttackCount == 2 && _State->GetAniIndex() > 5)
+		{
+
+			Attack3();
+			cout << _State->GetAttRect().left << endl;
+			_AttackCount++;
+			_State->SetAttRect();
+		}
+		_MoveUD = MOVEUD::NON;
+		_MoveLR = MOVELR::NON;
+	}
+	
+
+}
+
+void Player::DashUpdate()
+{
+}
+
+
+
+
 
 void Player::Walk()
 {
@@ -260,6 +398,18 @@ void Player::Skill1()
 void Player::Skill2()
 {
 	_State->Skill2(this);
+}
+
+void Player::Guard()
+{
+}
+
+void Player::GameOver()
+{
+}
+
+void Player::DiveAttack()
+{
 }
 
 void Player::Default()

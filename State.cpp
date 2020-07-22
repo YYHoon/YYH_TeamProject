@@ -32,7 +32,6 @@ void State::Update()
 		_Center.x+(_PlayerImg->getFrameWidth()*0.5f),
 		_Center.y);
 	KEYANIMANAGER->update();
-	cout << _PlayerRc.left << endl;
 }
 
 void State::Render()
@@ -44,6 +43,7 @@ void State::Render()
 void State::DebugRender()
 {
 	//CAMERAMANAGER->rectangle(getMemDC(), _PlayerRc);
+	CAMERAMANAGER->rectangle(getMemDC(), _AttackRc);
 }
 
 void State::Release()
@@ -139,6 +139,7 @@ void PlayLeftIdle::Walk(Player* player)
 		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerLeftWalk");
 	_PlayerAni->start();
+	
 }
 
 void PlayLeftIdle::Attack1(Player* player)
@@ -149,7 +150,14 @@ void PlayLeftIdle::Attack1(Player* player)
 		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
 		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerLeftAttack1");
+	
 	_PlayerAni->start();
+	
+	if (_PlayerAni->isPlay())
+	{
+		_AttackRc.set(_PlayerRc.left, _PlayerRc.top + 50, _PlayerRc.left + 50, _PlayerRc.top + 200);
+	}
+	
 }
 
 void PlayLeftIdle::Attack2(Player* player)
@@ -161,6 +169,12 @@ void PlayLeftIdle::Attack2(Player* player)
 		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerLeftAttack2");
 	_PlayerAni->start();
+	
+
+	if (_PlayerAni->isPlay())
+	{
+		_AttackRc.set(_PlayerRc.left, _PlayerRc.top + 50, _PlayerRc.left + 50, _PlayerRc.top + 200);
+	}
 }
 
 void PlayLeftIdle::Attack3(Player* player)
@@ -172,6 +186,11 @@ void PlayLeftIdle::Attack3(Player* player)
 		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerLeftAttack3");
 	_PlayerAni->start();
+
+	if (_PlayerAni->isPlay())
+	{
+		_AttackRc.set(_PlayerRc.left, _PlayerRc.top + 50, _PlayerRc.left + 50, _PlayerRc.top + 200);
+	}
 }
 
 void PlayLeftIdle::StandUp(Player* player)
@@ -229,6 +248,7 @@ void PlayLeftIdle::Default(Player* player)
 		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerLeftIdle");
 	_PlayerAni->start();
+
 }
 
 
@@ -262,8 +282,15 @@ void PlayRightIdle::Attack1(Player* player)
 		_Center.y - _PlayerImg->getFrameHeight(),
 		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
 		_Center.y);
-	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerRighttAttack1");
+	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerRightAttack1");
+	
+
 	_PlayerAni->start();
+	
+	if (_PlayerAni->isPlay())
+	{
+		_AttackRc.set(_PlayerRc.right, _PlayerRc.top + 50, _PlayerRc.right - 50, _PlayerRc.top + 200);
+	}
 }
 
 void PlayRightIdle::Attack2(Player* player)
@@ -275,6 +302,11 @@ void PlayRightIdle::Attack2(Player* player)
 		_Center.y);
 	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerRightAttack2");
 	_PlayerAni->start();
+
+	if (_PlayerAni->isPlay())
+	{
+		_AttackRc.set(_PlayerRc.right, _PlayerRc.top + 50, _PlayerRc.right - 50, _PlayerRc.top + 200);
+	}
 }
 
 void PlayRightIdle::Attack3(Player* player)
@@ -284,8 +316,13 @@ void PlayRightIdle::Attack3(Player* player)
 		_Center.y - _PlayerImg->getFrameHeight(),
 		_Center.x + (_PlayerImg->getFrameWidth() * 0.5f),
 		_Center.y);
-	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerRight3");
+	_PlayerAni = KEYANIMANAGER->findAnimation("PlayerRightAttack3");
 	_PlayerAni->start();
+
+	if (_PlayerAni->isPlay())
+	{
+		_AttackRc.set(_PlayerRc.right, _PlayerRc.top + 50, _PlayerRc.right - 50, _PlayerRc.top + 200);
+	}
 }
 
 void PlayRightIdle::StandUp(Player* player)

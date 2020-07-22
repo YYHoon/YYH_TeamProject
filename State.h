@@ -12,8 +12,8 @@ protected:
 	animation* _PlayerAni;
 	POINTFLOAT _Center;
 	MYRECT _PlayerRc;
-
-
+	MYRECT _AttackRc;
+	
 	bool _Left;
 
 public:
@@ -44,8 +44,9 @@ public:
 
 	inline State* GetState() { return _State; }
 	inline bool GetAniIsPlay() { return _PlayerAni->isPlay(); }
-	
-
+	inline bool GetLeft() { return _Left; }
+	inline MYRECT GetAttRect() { return _AttackRc; }
+	inline int GetAniIndex() { return _PlayerAni->getNowAniIndex(); }
 
 
 
@@ -56,6 +57,7 @@ public:
 		_Center.y = XY.y;
 	}
 	inline void SetLeft(bool left) { _Left = left; }
+	inline void SetAttRect() { _AttackRc.set(0,0,0,0) ; }
 
 };
 
