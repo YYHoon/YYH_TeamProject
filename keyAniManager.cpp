@@ -44,7 +44,7 @@ void keyAniManager::update()
 			iterAnimations vArrIter;
 			for (vArrIter = mIter->second.begin(); vArrIter != mIter->second.end(); ++vArrIter)
 			{
-				if ((*vArrIter)->isPlay()) continue;
+				if (!(*vArrIter)->isPlay()) continue;
 				(*vArrIter)->frameUpdate(TIMEMANAGER->getElapsedTime() * 1.0f);
 			}
 		}
@@ -369,12 +369,10 @@ void keyAniManager::StartB(string animationKeyName)
 	HIterAnimations mIter;
 	for (vIter = _vTomtalAnimation.begin(); vIter != _vTomtalAnimation.end(); ++vIter)
 	{
-		cout << "Èñ¸Á" << endl;
 		for (mIter = vIter->begin(); mIter != vIter->end(); ++mIter)
 		{
-			if (!(mIter->first != animationKeyName)) break;
+			if ((mIter->first != animationKeyName)) break;
 			iterAnimations vArrIter;
-			cout << "Èñ¸Á" << endl;
 			for (vArrIter = mIter->second.begin(); vArrIter != mIter->second.end(); ++vArrIter)
 			{
 				if ((*vArrIter)->isPlay()) continue;
