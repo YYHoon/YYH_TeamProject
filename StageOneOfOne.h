@@ -1,10 +1,15 @@
-//#pragma once
-//#include "ParentStage.h"
-//class StageOneOfOne : public ParentStage
-//{
-//public:
-//	HRESULT init()override;
-//	void render()override;
-//	void SetPlayer()override;
-//};
-//
+
+#pragma once
+#include "ParentStage.h"
+class Player;
+class ParentsObstacle;
+
+
+class StageOneOfOne : public ParentStage
+{
+private:
+
+
+public:
+	HRESULT init()override;
+};

@@ -73,6 +73,13 @@
     <Filter Include="playGround\Player\State">
       <UniqueIdentifier>{74defe76-8895-4b4e-9379-1522e3ea8f5a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\Stage">
+      <UniqueIdentifier>{9b9f4bad-c487-4011-a4a4-2713299d9fcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\Obstacle">
+      <UniqueIdentifier>{cc85a0cb-73dc-4469-b954-5d1137087b6b}</UniqueIdentifier>
+      
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -198,9 +205,6 @@
     <ClInclude Include="Object.h">
       <Filter>playGround\StageManager</Filter>
     </ClInclude>
-    <ClInclude Include="ParentStage.h">
-      <Filter>playGround\StageManager</Filter>
-    </ClInclude>
     <ClInclude Include="SaveLoad.h">
       <Filter>playGround\StageManager</Filter>
     </ClInclude>
@@ -224,6 +228,33 @@
     </ClInclude>
     <ClInclude Include="State.h">
       <Filter>playGround\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="StageOneOfOne.h">
+      <Filter>playGround\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="StageOneStart.h">
+      <Filter>playGround\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="ParentStage.h">
+      <Filter>playGround\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="ParentsObstacle.h">
+      <Filter>playGround\Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="DestructiblePillar.h">
+      <Filter>playGround\Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="Desk.h">
+      <Filter>playGround\Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="UnDestructiblePillar.h">
+      <Filter>playGround\Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="AllObstacle.h">
+      <Filter>playGround\Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="Shop.h">
+      <Filter>playGround\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -329,9 +360,6 @@
     <ClCompile Include="Object.cpp">
       <Filter>playGround\StageManager</Filter>
     </ClCompile>
-    <ClCompile Include="ParentStage.cpp">
-      <Filter>playGround\StageManager</Filter>
-    </ClCompile>
     <ClCompile Include="SaveLoad.cpp">
       <Filter>playGround\StageManager</Filter>
     </ClCompile>
@@ -356,6 +384,31 @@
     <ClCompile Include="State.cpp">
       <Filter>playGround\Player\State</Filter>
     </ClCompile>
+    <ClCompile Include="StageOneOfOne.cpp">
+      <Filter>playGround\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="StageOneStart.cpp">
+      <Filter>playGround\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="ParentStage.cpp">
+      <Filter>playGround\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="ParentsObstacle.cpp">
+      <Filter>playGround\Obstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="DestructiblePillar.cpp">
+      <Filter>playGround\Obstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="Desk.cpp">
+      <Filter>playGround\Obstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="UnDestructiblePillar.cpp">
+      <Filter>playGround\Obstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="Shop.cpp">
+      <Filter>playGround\UI</Filter>
+    </ClCompile>
+  
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="windowsAPI.rc">

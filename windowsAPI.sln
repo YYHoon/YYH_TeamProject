@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.28307.852
+VisualStudioVersion = 15.0.28307.1082
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "windowsAPI", "windowsAPI.vcxproj", "{E2958D70-CFC8-4A1D-980D-12180D9B541F}"
 EndProject
@@ -26,6 +26,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {EA51D490-9BE3-42B5-BB84-703B70BF0CAE}
+		SolutionGuid = {8AFF7525-CCF8-45A7-B573-8CB14C381CCB}
 	EndGlobalSection
 EndGlobal

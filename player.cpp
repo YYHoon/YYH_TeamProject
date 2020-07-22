@@ -143,6 +143,7 @@ void Player::PlayerImageAniStting()
 
 }
 
+
 HRESULT Player::Init()
 {
 	PlayerImageAniStting();
@@ -159,10 +160,7 @@ HRESULT Player::Init()
 	_State->SetCenterXY(_Center);
 	_State->Init();
 	Default();
-
-
 	return S_OK;
-
 }
 
 void Player::Update()
@@ -225,6 +223,7 @@ void Player::PlayerKeyMove()
 	{
 		_Center.y -= 2;
 	}
+
 }
 
 void Player::Walk()
@@ -234,6 +233,7 @@ void Player::Walk()
 
 void Player::Attack1()
 {
+
 	_State->Attack1(this);
 }
 

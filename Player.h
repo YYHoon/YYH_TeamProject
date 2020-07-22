@@ -24,6 +24,7 @@ public:
 	Player();
 	virtual ~Player() {};
 
+
 	virtual void PlayerImageAniStting();
 	//플레이어 이미지 애니메이션 셋팅 함수
 
@@ -34,6 +35,7 @@ public:
 	virtual void Render();
 	virtual void DebugRender();
 	virtual void PlayerKeyMove();
+
 
 
 	virtual void Walk();
