@@ -6,34 +6,39 @@ HRESULT EnemySchoolMan::init()
     return S_OK;
 }
 
-HRESULT EnemySchoolMan::Init(POINT pt)
+HRESULT EnemySchoolMan::Init(POINTFLOAT pt)
 {
+	_IsRight = true;
+
 	SmAniInit();
 	SmAniSet(SmIdle);
 
 	//적 그림자
 	_SmShadowImage = IMAGEMANAGER->addImage("Showdow", "image/enemy/Enemy_Shadow.bmp", 128, 38, true, RGB(255, 0, 255));
 
-	_SmShadow = RectMakeCenter(pt.x, pt.y, _SmShadowImage->getWidth(), _SmShadowImage->getHeight());
+	//_SmShadow = RectMakeCenter(pt.x, pt.y, _SmShadowImage->getWidth(), _SmShadowImage->getHeight());
+	_SmShadow.MYRectMakeCenter(pt.x, pt.y, _SmShadowImage->getWidth(), _SmShadowImage->getHeight());
 
 	_ShadowX = (_SmShadow.left + _SmShadow.right) / 2;
 	_ShadowY = (_SmShadow.top + _SmShadow.bottom) / 2;
 
-	_SmImage = IMAGEMANAGER->findImage("SmIdle");
+	//_SmImage = IMAGEMANAGER->findImage("SmIdle");
 
-	_SmHit = RectMakeCenter(_ShadowX, _ShadowY - _SmImage->getFrameHeight() / 2,
-		_SmImage->getFrameWidth(), _SmImage->getFrameHeight());
+	//_SmHit = RectMakeCenter(_ShadowX, _ShadowY - _SmImage->getFrameHeight() / 2,_SmImage->getFrameWidth(), _SmImage->getFrameHeight());
+	_SmHit.MYRectMakeCenter(_ShadowX, _ShadowY - _SmImage->getFrameHeight() / 2, _SmImage->getFrameWidth(), _SmImage->getFrameHeight());
 
 	_EnemyX = (_SmHit.left + _SmHit.right) / 2;
 	_EnemyY = (_SmHit.top +  _SmHit.bottom) / 2;
 
-	_SmPlayerExploration = RectMakeCenter(_EnemyX, _EnemyY, 800, 500);
 
-	_SmAttackExploration = RectMakeCenter(_SmHit.left, _EnemyY, 200, 200);
+	//_SmPlayerExploration = RectMakeCenter(_EnemyX, _EnemyY, 800, 500);
+	_SmPlayerExploration.MYRectMakeCenter(_EnemyX, _EnemyY, 800, 500);
+
+	//_SmAttackExploration = RectMakeCenter(_SmHit.left, _EnemyY, 200, 200);
+	_SmAttackExploration.MYRectMakeCenter(_SmHit.left, _EnemyY, 200, 200);
 
 	_Hp = 10.f;
 
-	_IsRight = true;
 
     return S_OK;
 }
@@ -387,9 +392,7 @@ void EnemySchoolMan::Release()
 
 void EnemySchoolMan::Update()
 {
-	_SmImage = IMAGEMANAGER->findImage("SmWeponSwing");
-	_SmAni = KEYANIMANAGER->findAnimation("SmLWeponSwing");
-	_SmAni->start();
+
 	//_SmState = SmWeaponSwing;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -397,30 +400,30 @@ void EnemySchoolMan::Update()
 	_ShadowX = (_SmShadow.left + _SmShadow.right) / 2;
 	_ShadowY = (_SmShadow.top + _SmShadow.bottom) / 2;
 
-	_SmHit = RectMakeCenter(_ShadowX, _ShadowY - _SmImage->getFrameHeight() / 2,
-		_SmImage->getFrameWidth(), _SmImage->getFrameHeight());
+	_SmHit.MYRectMakeCenter(_ShadowX, _ShadowY - _SmImage->getFrameHeight() / 2, _SmImage->getFrameWidth(), _SmImage->getFrameHeight());
 
 	_EnemyX = (_SmHit.left + _SmHit.right) / 2;
 	_EnemyY = (_SmHit.top + _SmHit.bottom) / 2;
 
-	_SmPlayerExploration = RectMakeCenter(_EnemyX, _EnemyY, 800, 500);
+	_SmPlayerExploration.MYRectMakeCenter(_EnemyX, _EnemyY, 800, 500);
 
 	if (_IsRight)
 	{
-		_SmAttackExploration = RectMakeCenter(_SmHit.right, _EnemyY, 200, 200);
+		_SmAttackExploration.MYRectMakeCenter(_SmHit.right, _EnemyY, 200, 200);
 	}
 	else
 	{
-		_SmAttackExploration = RectMakeCenter(_SmHit.left, _EnemyY, 200, 200);
+		_SmAttackExploration.MYRectMakeCenter(_SmHit.left, _EnemyY, 200, 200);
 	}
-
+///////////////////////////////////////////////////////////////////////////
+	KEYANIMANAGER->update();
 }
 
 
 void EnemySchoolMan::Render()
 {
-	Rectangle(getMemDC(), _SmPlayerExploration);
-	Rectangle(getMemDC(), _SmAttackExploration);
+	_SmPlayerExploration.render(getMemDC());
+	_SmAttackExploration.render(getMemDC());
 	_SmShadowImage->render(getMemDC(), _SmShadow.left, _SmShadow.top);
 	_SmImage->aniRender(getMemDC(), _SmHit.left, _SmHit.top, _SmAni);
 }

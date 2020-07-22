@@ -15,26 +15,36 @@ playGround::~playGround()
 HRESULT playGround::init()
 {
 	gameNode::init(true);
+
+	setEnemy();
+	ENE = new EnemyManager;
+	ENE->Init(_spawn);
+
+	te1.MYRectMake(100, 100, 50, 50);
 	
-	imginit(); // 모든 이미지를 여기다 넣도록
-	SCENEMANAGER->addScene("LoadingScene", new LoadingScene);
-	SCENEMANAGER->addScene("MenuScene", new IntroMenuScene);
-	
-	SCENEMANAGER->changeScene("LoadingScene");
+	te2.MYRectMake(200, 200, 50, 50);
+
 	return S_OK;
 }
 
 //메모리 해제
 void playGround::release()
 {
-	
+	//SAFE_DELETE(ENE);
 }
 
 //연산
 void playGround::update()
 {
 	gameNode::update();
-	SCENEMANAGER->update();
+
+	getDistance(te1.left, te1.top, te2.left, te2.top);
+
+
+
+	ENE->Updata();
+
+
 }
 
 //그리기 전용
@@ -43,23 +53,26 @@ void playGround::render()
 	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
 	//=================================================
 
-	SCENEMANAGER->render();
+	ENE->Render();
+
+	te1.render(getMemDC());
+	te2.render(getMemDC());
+
 	TIMEMANAGER->render(getMemDC());
+	
 	//=============================================
 	_backBuffer->render(getHDC(), 0, 0);
 }
 
-void playGround::imginit()
+void playGround::setEnemy()
 {
-	// UI
-	SOUNDMANAGER->addSound("IntroMusic", "Sounds/RCG_Intro_Song.wav", true, false);
-	IMAGEMANAGER->addImage("MenuBackGround", "Image/menuBackGround.bmp", WINSIZEX, WINSIZEY, false, BLACK);
-	IMAGEMANAGER->addImage("MenuFrontGround", "Image/MenuFront.bmp", WINSIZEX, WINSIZEY, true, MAGENTA);
-	IMAGEMANAGER->addImage("KyokoIntro", "Image/fx_battle_portraits_kyoko.bmp", 512, 771, true, MAGENTA);
-	IMAGEMANAGER->addImage("MisakoIntro", "Image/fx_battle_portraits_misako.bmp", 443, 761, true, MAGENTA);
-	IMAGEMANAGER->addImage("Intro_UI_START", "Image/UI_START.bmp", 151, 56, true, MAGENTA);
-	IMAGEMANAGER->addImage("Intro_UI_QUIT", "Image/UI_QUIT.bmp", 136, 54, true, MAGENTA);
-	IMAGEMANAGER->addImage("Intro_UI_ARROW", "Image/UI_title_arrow.bmp", 53, 61, true, MAGENTA);
-	IMAGEMANAGER->addImage("Intro_UI_LOGO", "Image/UI_TITLE_LOGO.bmp", 573, 317, true, MAGENTA);
-	
+	_spawn.clear();
+
+	TagEnemySpawn _EnSpawn;
+
+
+	_EnSpawn.EmType = CheerLeader;
+	_EnSpawn.pt.x = 500;
+	_EnSpawn.pt.y = 500;
+	_spawn.push_back(_EnSpawn);
 }

@@ -31,13 +31,13 @@ private:
 	image* _EnemyShadowImage;	//그림자 이미지(중요함)
 	image* _EnemyImage;		//캐릭터 이미지 자주 달라진다
 
-	RECT _EnemyShadow;				//적 그림자
-	RECT _Enemy;					//적 캐릭터 및 충돌처리용 사각형
-	RECT _EnemyPlayerExploration;	//적이 플레이어 탐색하는 영역
-	RECT _EnemyAttackExploration;	//플레이어 들어올시 공격하는 영역
-	RECT _EnemyAttack;				//적이 공격시 충돌처리용
+	MYRECT _EnemyShadow;				//적 그림자
+	MYRECT _Enemy;						//적 캐릭터 및 충돌처리용 사각형
+	MYRECT _EnemyPlayerExploration;		//적이 플레이어 탐색하는 영역
+	MYRECT _EnemyAttackExploration;		//플레이어 들어올시 공격하는 영역
+	MYRECT _EnemyAttack;				//적을 공격시 충돌처리용
 
-	float _ShadowX, _ShadowY; //그림자의 중점 (EnemyCore에 사용)
+	float _ShadowX, _ShadowY; //그림자의 중점 (Enemy에 사용)
 
 	float _EnemyX, _EnemyY; //캐릭터의 중점
 
@@ -50,7 +50,7 @@ private:
 public:
 
 	virtual HRESULT init();
-	virtual HRESULT Init(POINT pt);
+	virtual HRESULT Init(POINTFLOAT pt);
 
 	void AniInit();
 	void AniSet(CLSTATE state);
@@ -61,11 +61,14 @@ public:
 
 	float GetEnemyX() { return _ShadowX; }
 	float GetEnemyY() { return _ShadowY; }
-	RECT GetEnemyHit() { return _Enemy; } //피격영역
+	MYRECT GetEnemyHit() { return _Enemy; } //피격영역
 
 	CLSTATE getClState() { return _ClState; }
 
 	void hitHP(float damge);
 
 	float setHP() { return _Hp; }
+
+	void SetX(float X) { _ShadowX = X; }
+	void SetY(float Y) { _ShadowY = Y; }
 };

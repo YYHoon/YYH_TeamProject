@@ -6,34 +6,40 @@ HRESULT EnemySchoolGirl::init()
 	return S_OK;
 }
 
-HRESULT EnemySchoolGirl::Init(POINT pt)
+HRESULT EnemySchoolGirl::Init(POINTFLOAT pt)
 {
+
+	_IsRight = true;
+
 	SgAniInit();
 	SgAniSet(SgIdle);
 
 	//적 그림자
 	_SgShadowImage = IMAGEMANAGER->addImage("Showdow", "image/enemy/Enemy_Shadow.bmp", 128, 38, true, RGB(255, 0, 255));
 
-	_SgShadow = RectMakeCenter(pt.x, pt.y, _SgShadowImage->getWidth(), _SgShadowImage->getHeight());
+	//_SgShadow = RectMakeCenter(pt.x, pt.y, _SgShadowImage->getWidth(), _SgShadowImage->getHeight());
+	_SgShadow.MYRectMakeCenter(pt.x, pt.y, _SgShadowImage->getWidth(), _SgShadowImage->getHeight());
 
 	_ShadowX = (_SgShadow.left + _SgShadow.right) / 2;
 	_ShadowY = (_SgShadow.top + _SgShadow.bottom) / 2;
 
 	_SgImage = IMAGEMANAGER->findImage("SgIdle");
 
-	_SgHit = RectMakeCenter(_ShadowX, _ShadowY - _SgImage->getFrameHeight() / 2,
-		_SgImage->getFrameWidth(), _SgImage->getFrameHeight());
+	//_SgHit = RectMakeCenter(_ShadowX, _ShadowY - _SgImage->getFrameHeight() / 2, _SgImage->getFrameWidth(), _SgImage->getFrameHeight());
+	_SgHit.MYRectMakeCenter(_ShadowX, _ShadowY - _SgImage->getFrameHeight() / 2, _SgImage->getFrameWidth(), _SgImage->getFrameHeight());
 
 	_EnemyX = (_SgHit.left + _SgHit.right) / 2;
 	_EnemyY = (_SgHit.top + _SgHit.bottom) / 2;
 
-	_SgPlayerExploration = RectMakeCenter(_EnemyX, _EnemyY, 800, 500);
+	//_SgPlayerExploration = RectMakeCenter(_EnemyX, _EnemyY, 800, 500);
+	_SgPlayerExploration.MYRectMakeCenter(_EnemyX, _EnemyY, 800, 500);
 
-	_SgAttackExploration = RectMakeCenter(_EnemyX, _EnemyY, 400, 200);
+	//_SgAttackExploration = RectMakeCenter(_EnemyX, _EnemyY, 200, 200);
+	_SgAttackExploration.MYRectMakeCenter(_EnemyX, _EnemyY, 200, 200);
 
 	_Hp = 10.f;
 
-	_IsRight = true;
+	
 
 	return S_OK;
 }
@@ -58,27 +64,28 @@ void EnemySchoolGirl::Update()
 	_ShadowX = (_SgShadow.left + _SgShadow.right) / 2;
 	_ShadowY = (_SgShadow.top + _SgShadow.bottom) / 2;
 
-	_SgHit = RectMakeCenter(_ShadowX, _ShadowY - _SgImage->getFrameHeight() / 2,
-		_SgImage->getFrameWidth(), _SgImage->getFrameHeight());
+	_SgHit.MYRectMakeCenter(_ShadowX, _ShadowY - _SgImage->getFrameHeight() / 2, _SgImage->getFrameWidth(), _SgImage->getFrameHeight());
 
 	_EnemyX = (_SgHit.left + _SgHit.right) / 2;
 	_EnemyY = (_SgHit.top + _SgHit.bottom) / 2;
 
-	_SgPlayerExploration = RectMakeCenter(_EnemyX, _EnemyY, 800, 500);
+	_SgPlayerExploration.MYRectMakeCenter(_EnemyX, _EnemyY, 800, 500);
 	if (_IsRight)
 	{
-		_SgAttackExploration = RectMakeCenter(_SgHit.left, _EnemyY, 200, 200);
+		_SgAttackExploration.MYRectMakeCenter(_SgHit.right, _EnemyY, 200, 200);
 	}
 	else
 	{
-		_SgAttackExploration = RectMakeCenter(_SgHit.right, _EnemyY, 200, 200);
+		_SgAttackExploration.MYRectMakeCenter(_SgHit.left, _EnemyY, 200, 200);
 	}
+///////////////////////////////////////////////////////////////////////////////////////////////
+	KEYANIMANAGER->update();
 }
 
 void EnemySchoolGirl::Render()
 {
-	Rectangle(getMemDC(), _SgPlayerExploration);
-	Rectangle(getMemDC(), _SgAttackExploration);
+	_SgPlayerExploration.render(getMemDC());
+	_SgAttackExploration.render(getMemDC());
 	_SgShadowImage->render(getMemDC(), _SgShadow.left, _SgShadow.top);
 	_SgImage->aniRender(getMemDC(), _SgHit.left, _SgHit.top, _SgAni);
 }

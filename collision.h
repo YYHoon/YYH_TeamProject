@@ -107,6 +107,23 @@ namespace TTYONE_UTIL
 			bottom = centerY + halfH;
 		}
 
+		void MYRectMakeCenter(float x, float y, float width, float height)
+		{
+			left = x - width / 2;
+			right = x + width / 2;
+			top = y - height / 2;
+			bottom = y + height / 2;
+		}
+
+		void MYRectMake(float x, float y, float width, float height)
+		{
+
+			left = x;
+			right = x + width;
+			top = y;
+			bottom = y + height;
+		}
+
 		void render(HDC hdc)
 		{
 			Rectangle(hdc,

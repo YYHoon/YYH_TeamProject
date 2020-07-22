@@ -32,11 +32,11 @@ private:
 	image* _SmShadowImage;
 	image* _SmImage;
 
-	RECT _SmShadow;				//적 그림자
-	RECT _SmHit;				//적 캐릭터 및 충돌처리용 사각형
-	RECT _SmPlayerExploration;	//적이 플레이어 탐색하는 영역
-	RECT _SmAttackExploration;	//플레이어 들어올시 공격하는 영역
-	RECT _SmAttack;				//적이 공격시 충돌처리용
+	MYRECT _SmShadow;				//적 그림자
+	MYRECT _SmHit;				//적 캐릭터 및 충돌처리용 사각형
+	MYRECT _SmPlayerExploration;	//적이 플레이어 탐색하는 영역
+	MYRECT _SmAttackExploration;	//플레이어 들어올시 공격하는 영역
+	MYRECT _SmAttack;				//적이 공격시 충돌처리용
 
 	float _ShadowX, _ShadowY; //그림자의 중점 (EnemyCore에 사용)
 
@@ -50,7 +50,7 @@ private:
 
 public:
 	virtual HRESULT init();
-	virtual HRESULT Init(POINT pt);
+	virtual HRESULT Init(POINTFLOAT pt);
 
 	void SmAniInit();
 	void SmAniSet(SMSTATE state);
@@ -61,7 +61,7 @@ public:
 
 	float GetEnemyX() { return _ShadowX; }
 	float GetEnemyY() { return _ShadowY; }
-	RECT GetEnemyHit() { return _SmHit; } //피격영역
+	MYRECT GetEnemyHit() { return _SmHit; } //피격영역
 
 	SMSTATE getSmState() { return _SmState; }
 
