@@ -76,6 +76,9 @@
     <Filter Include="2DGameFramework\Merge">
       <UniqueIdentifier>{5f9764d6-7da3-4a7b-93af-3eb97291b6ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\Item">
+      <UniqueIdentifier>{3cdd4159-6f46-4fb5-aab2-fe7d3b7f0cc6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -252,11 +255,11 @@
     <ClInclude Include="VendingMachine.h">
       <Filter>playGround\Obstacle</Filter>
     </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Merge.h">
       <Filter>2DGameFramework\Merge</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>playGround\Item</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -407,11 +410,11 @@
     <ClCompile Include="VendingMachine.cpp">
       <Filter>playGround\Obstacle</Filter>
     </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Merge.cpp">
       <Filter>2DGameFramework\Merge</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>playGround\Item</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

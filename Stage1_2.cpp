@@ -14,7 +14,7 @@ HRESULT Stage1_2::init()
 	_EventArea.centerSet(_EventCenterSpot.x, _EventCenterSpot.y, 1300, 500);
 	_IsOnceClear = false;
 	_IsEventPlay = false;
-
+	_WaveCount = 0;
 	
 
 	_Ev = new StopCamera;
@@ -25,6 +25,10 @@ HRESULT Stage1_2::init()
 
 void Stage1_2::render()
 {
+	if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
+	{
+		_WaveCount++;
+	}
 	cout << _IsEventPlay << endl;
 	EventScript();
 	CAMERAMANAGER->render(getMemDC(), _Img, 0, -100);
@@ -52,6 +56,12 @@ void Stage1_2::EventScript()
 		_Ev->EventStart(_EventCenterSpot.x, _EventCenterSpot.y);
 		
 	}
+	if (_WaveCount >= 4)
+	{
+		_IsEventPlay = false;
+		_IsOnceClear = true;
+	}
+
 	/*
 		if(Enemy.size() == 0)
 		WaveCount++;

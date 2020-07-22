@@ -18,6 +18,7 @@ protected:
 	bool _IsOnceClear;
 	bool _IsEventPlay;
 	int _StageIndex;
+	int _WaveCount;
 	Player* _Player;
 	ParentsObstacle* _Obstacle;
 
