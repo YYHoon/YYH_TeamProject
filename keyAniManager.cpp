@@ -102,7 +102,7 @@ void keyAniManager::addDefaultFrameAnimation(string animationKeyName, const char
 
 	for (int i = 0; i < buffer; ++i)
 	{
-		vAniBuffer.push_back(new animation);
+		vAniBuffer.push_back( ani);
 		vAniBuffer[i]->init(img->getWidth(), img->getHeight(), img->getFrameWidth(), img->getFrameHeight());
 		vAniBuffer[i]->setDefPlayFrame(reverse, loop);
 		vAniBuffer[i]->setFPS(fps);
@@ -121,7 +121,7 @@ void keyAniManager::addDefaultFrameAnimation(string animationKeyName, const char
 
 	for (int i = 0; i < buffer; ++i)
 	{
-		vAniBuffer.push_back(new animation);
+		vAniBuffer.push_back(ani);
 		vAniBuffer[i]->init(img->getWidth(), img->getHeight(), img->getFrameWidth(), img->getFrameHeight());
 		vAniBuffer[i]->setDefPlayFrame(reverse, loop, CALLBACK_FUNCTION(cbFunction));
 		vAniBuffer[i]->setFPS(fps);
@@ -140,7 +140,7 @@ void keyAniManager::addDefaultFrameAnimation(string animationKeyName, const char
 
 	for (int i = 0; i < buffer; ++i)
 	{
-		vAniBuffer.push_back(new animation);
+		vAniBuffer.push_back(ani);
 		vAniBuffer[i]->init(img->getWidth(), img->getHeight(), img->getFrameWidth(), img->getFrameHeight());
 		vAniBuffer[i]->setDefPlayFrame(reverse, loop, CALLBACK_FUNCTION_PARAMETER(cbFunction),obj);
 		vAniBuffer[i]->setFPS(fps);
@@ -195,7 +195,7 @@ void keyAniManager::addArrayFrameAnimation(string animationKeyName, const char* 
 
 	for (int i = 0; i < buffer; ++i)
 	{
-		vAniBuffer.push_back(new animation);
+		vAniBuffer.push_back(ani);
 		vAniBuffer[i]->init(img->getWidth(), img->getHeight(), img->getFrameWidth(), img->getFrameHeight());
 		vAniBuffer[i]->setPlayFrame(arr, arrLen, loop);
 		vAniBuffer[i]->setFPS(fps);
@@ -214,7 +214,7 @@ void keyAniManager::addArrayFrameAnimation(string animationKeyName, const char* 
 
 	for (int i = 0; i < buffer; ++i)
 	{
-		vAniBuffer.push_back(new animation);
+		vAniBuffer.push_back(ani);
 		vAniBuffer[i]->init(img->getWidth(), img->getHeight(), img->getFrameWidth(), img->getFrameHeight());
 		vAniBuffer[i]->setPlayFrame(arr, arrLen, loop, CALLBACK_FUNCTION(cbFunction));
 		vAniBuffer[i]->setFPS(fps);
@@ -233,7 +233,7 @@ void keyAniManager::addArrayFrameAnimation(string animationKeyName, const char* 
 
 	for (int i = 0; i < buffer; ++i)
 	{
-		vAniBuffer.push_back(new animation);
+		vAniBuffer.push_back(ani);
 		vAniBuffer[i]->init(img->getWidth(), img->getHeight(), img->getFrameWidth(), img->getFrameHeight());
 		vAniBuffer[i]->setPlayFrame(arr, arrLen, loop, CALLBACK_FUNCTION_PARAMETER(cbFunction), obj);
 		vAniBuffer[i]->setFPS(fps);
@@ -288,7 +288,7 @@ void keyAniManager::addCoordinateFrameAnimation(string animationKeyName, const c
 
 	for (int i = 0; i < buffer; ++i)
 	{
-		vAniBuffer.push_back(new animation);
+		vAniBuffer.push_back(ani);
 		vAniBuffer[i]->init(img->getWidth(), img->getHeight(), img->getFrameWidth(), img->getFrameHeight());
 		vAniBuffer[i]->setPlayFrame(start, end, reverse, loop);
 		vAniBuffer[i]->setFPS(fps);
@@ -307,7 +307,7 @@ void keyAniManager::addCoordinateFrameAnimation(string animationKeyName, const c
 
 	for (int i = 0; i < buffer; ++i)
 	{
-		vAniBuffer.push_back(new animation);
+		vAniBuffer.push_back(ani);
 		vAniBuffer[i]->init(img->getWidth(), img->getHeight(), img->getFrameWidth(), img->getFrameHeight());
 		vAniBuffer[i]->setPlayFrame(start, end, reverse, loop, CALLBACK_FUNCTION(cbFunction));
 		vAniBuffer[i]->setFPS(fps);
@@ -326,7 +326,7 @@ void keyAniManager::addCoordinateFrameAnimation(string animationKeyName, const c
 
 	for (int i = 0; i < buffer; ++i)
 	{
-		vAniBuffer.push_back(new animation);
+		vAniBuffer.push_back(ani);
 		vAniBuffer[i]->init(img->getWidth(), img->getHeight(), img->getFrameWidth(), img->getFrameHeight());
 		vAniBuffer[i]->setPlayFrame(start, end, reverse, loop, CALLBACK_FUNCTION_PARAMETER(cbFunction), obj);
 		vAniBuffer[i]->setFPS(fps);
@@ -385,17 +385,62 @@ void keyAniManager::StartB(string animationKeyName)
 
 void keyAniManager::StopB(string animationKeyName)
 {
-
+	iterTotalEffect vIter;
+	HIterAnimations mIter;
+	for (vIter = _vTomtalAnimation.begin(); vIter != _vTomtalAnimation.end(); ++vIter)
+	{
+		for (mIter = vIter->begin(); mIter != vIter->end(); ++mIter)
+		{
+			if ((mIter->first != animationKeyName)) break;
+			iterAnimations vArrIter;
+			for (vArrIter = mIter->second.begin(); vArrIter != mIter->second.end(); ++vArrIter)
+			{
+				if ((*vArrIter)->isPlay()) continue;
+				(*vArrIter)->start();
+				return;
+			}
+		}
+	}
 }
 
 void keyAniManager::PauseB(string animationKeyName)
 {
-
+	iterTotalEffect vIter;
+	HIterAnimations mIter;
+	for (vIter = _vTomtalAnimation.begin(); vIter != _vTomtalAnimation.end(); ++vIter)
+	{
+		for (mIter = vIter->begin(); mIter != vIter->end(); ++mIter)
+		{
+			if ((mIter->first != animationKeyName)) break;
+			iterAnimations vArrIter;
+			for (vArrIter = mIter->second.begin(); vArrIter != mIter->second.end(); ++vArrIter)
+			{
+				if ((*vArrIter)->isPlay()) continue;
+				(*vArrIter)->start();
+				return;
+			}
+		}
+	}
 }
 
 void keyAniManager::ResumeB(string animationKeyName)
 {
-
+	iterTotalEffect vIter;
+	HIterAnimations mIter;
+	for (vIter = _vTomtalAnimation.begin(); vIter != _vTomtalAnimation.end(); ++vIter)
+	{
+		for (mIter = vIter->begin(); mIter != vIter->end(); ++mIter)
+		{
+			if ((mIter->first != animationKeyName)) break;
+			iterAnimations vArrIter;
+			for (vArrIter = mIter->second.begin(); vArrIter != mIter->second.end(); ++vArrIter)
+			{
+				if ((*vArrIter)->isPlay()) continue;
+				(*vArrIter)->start();
+				return;
+			}
+		}
+	}
 }
 
 animation * keyAniManager::findAnimation(string animationKeyName)
@@ -404,6 +449,15 @@ animation * keyAniManager::findAnimation(string animationKeyName)
 
 	//찾았다면
 	if (iter != _mTotalAnimation.end()) return iter->second;
+	return nullptr;
+}
+
+animation* keyAniManager::FindBufferAnimation(string animationKeyName)
+{
+	for (iterTotalEffect iter = _vTomtalAnimation.begin(); iter != _vTomtalAnimation.end(); ++iter)
+	{
+		HIterAnimations mIter = iter->find(animationKeyName);
+	}
 
 	return nullptr;
 }
