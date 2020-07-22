@@ -13,10 +13,14 @@ HRESULT EnemyCheerLeader::Init(POINTFLOAT pt)
 	AniInit();
 	AniSet(CLIdle);
 
+	_ClCenter.x	= pt.x;
+	_ClCenter.y = pt.y;
+
+
 	//적 그림자
 	_EnemyShadowImage = IMAGEMANAGER->addImage("Showdow", "image/enemy/Enemy_Shadow.bmp", 128, 38, true, RGB(255, 0, 255));
 
-	_EnemyShadow.MYRectMakeCenter(pt.x, pt.y, _EnemyShadowImage->getWidth(), _EnemyShadowImage->getHeight());
+	_EnemyShadow.MYRectMakeCenter(_ClCenter.x, _ClCenter.y, _EnemyShadowImage->getWidth(), _EnemyShadowImage->getHeight());
 
 	//RectMakeCenter( pt.x, pt.y, _EnemyShadowImage->getWidth(), _EnemyShadowImage->getHeight());
 	
@@ -32,8 +36,6 @@ HRESULT EnemyCheerLeader::Init(POINTFLOAT pt)
 	_EnemyX = (_Enemy.left + _Enemy.right) / 2;
 	_EnemyY = (_Enemy.top + _Enemy.bottom) / 2;
 
-	_EnemyPlayerExploration.MYRectMakeCenter(_EnemyX, _EnemyY, 800, 500);
-	//= RectMakeCenter(_EnemyX, _EnemyY, 800, 500);
 
 	_EnemyAttackExploration.MYRectMakeCenter(_EnemyX, _EnemyY, 200, 200);
 	//= RectMakeCenter(_EnemyX, _EnemyY, 400, 200);
@@ -50,14 +52,17 @@ void EnemyCheerLeader::Release()
 
 void EnemyCheerLeader::Update()
 {
-	//_EnemyShadow.move(3, 0);
+	if (KEYMANAGER->isOnceKeyDown(VK_F1)) _IsRight = false;
 
-	getDistance(_EnemyShadow.left, _EnemyShadow.top, _ptMouse.x, _ptMouse.y);
-	
+	if (KEYMANAGER->isOnceKeyDown(VK_F2)) _IsRight = true;
 
+	if (KEYMANAGER->isOnceKeyDown('A')) AniSet(CLDoublepom);
+	if (KEYMANAGER->isOnceKeyDown('B')) AniSet(CLBackflip);
 
 ////////////////////////////////////////////////////////////////////////////////////
-	
+
+	_EnemyShadow.MYRectMakeCenter(_ClCenter.x, _ClCenter.y, _EnemyShadowImage->getWidth(), _EnemyShadowImage->getHeight());
+
 	_ShadowX = (_EnemyShadow.left + _EnemyShadow.right) / 2;
 	_ShadowY = (_EnemyShadow.top + _EnemyShadow.bottom) / 2;
 
@@ -66,17 +71,13 @@ void EnemyCheerLeader::Update()
 	_EnemyX = (_Enemy.left + _Enemy.right) / 2;
 	_EnemyY = (_Enemy.top + _Enemy.bottom) / 2;
 
-	_EnemyPlayerExploration.MYRectMakeCenter(_EnemyX, _EnemyY, 800, 500);
-	//_EnemyPlayerExploration = RectMakeCenter(_EnemyX, _EnemyY, 800, 500);
 
 	if (_IsRight)
 	{
-		//_EnemyAttackExploration = RectMakeCenter(_Enemy.left, _EnemyY, 200, 200);
 		_EnemyAttackExploration.MYRectMakeCenter(_Enemy.right, _EnemyY, 200, 200);
 	}
 	else
-	{
-		//_EnemyAttackExploration = RectMakeCenter(_Enemy.right, _EnemyY, 200, 200);
+	{		
 		_EnemyAttackExploration.MYRectMakeCenter(_Enemy.left, _EnemyY, 200, 200);
 	}
 ////////////////////////////////////////////////////////////////////////////////////
@@ -85,7 +86,6 @@ void EnemyCheerLeader::Update()
 
 void EnemyCheerLeader::Render()
 {
-	_EnemyPlayerExploration.render(getMemDC());
 	_EnemyAttackExploration.render(getMemDC());
 	_EnemyShadowImage->render(getMemDC(), _EnemyShadow.left, _EnemyShadow.top);
 	_EnemyImage->aniRender(getMemDC(), _Enemy.left, _Enemy.top, _CLAni);

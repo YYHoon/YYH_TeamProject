@@ -10,6 +10,9 @@ HRESULT EnemySchoolMan::Init(POINTFLOAT pt)
 {
 	_IsRight = true;
 
+	_SmCenter.x	= pt.x;
+	_SmCenter.y = pt.y; 
+
 	SmAniInit();
 	SmAniSet(SmIdle);
 
@@ -17,7 +20,7 @@ HRESULT EnemySchoolMan::Init(POINTFLOAT pt)
 	_SmShadowImage = IMAGEMANAGER->addImage("Showdow", "image/enemy/Enemy_Shadow.bmp", 128, 38, true, RGB(255, 0, 255));
 
 	//_SmShadow = RectMakeCenter(pt.x, pt.y, _SmShadowImage->getWidth(), _SmShadowImage->getHeight());
-	_SmShadow.MYRectMakeCenter(pt.x, pt.y, _SmShadowImage->getWidth(), _SmShadowImage->getHeight());
+	_SmShadow.MYRectMakeCenter(_SmCenter.x, _SmCenter.y, _SmShadowImage->getWidth(), _SmShadowImage->getHeight());
 
 	_ShadowX = (_SmShadow.left + _SmShadow.right) / 2;
 	_ShadowY = (_SmShadow.top + _SmShadow.bottom) / 2;
@@ -32,7 +35,6 @@ HRESULT EnemySchoolMan::Init(POINTFLOAT pt)
 
 
 	//_SmPlayerExploration = RectMakeCenter(_EnemyX, _EnemyY, 800, 500);
-	_SmPlayerExploration.MYRectMakeCenter(_EnemyX, _EnemyY, 800, 500);
 
 	//_SmAttackExploration = RectMakeCenter(_SmHit.left, _EnemyY, 200, 200);
 	_SmAttackExploration.MYRectMakeCenter(_SmHit.left, _EnemyY, 200, 200);
@@ -393,9 +395,10 @@ void EnemySchoolMan::Release()
 void EnemySchoolMan::Update()
 {
 
-	//_SmState = SmWeaponSwing;
 
 /////////////////////////////////////////////////////////////////////////////
+
+	_SmShadow.MYRectMakeCenter(_SmCenter.x, _SmCenter.y, _SmShadowImage->getWidth(), _SmShadowImage->getHeight());
 
 	_ShadowX = (_SmShadow.left + _SmShadow.right) / 2;
 	_ShadowY = (_SmShadow.top + _SmShadow.bottom) / 2;
@@ -404,8 +407,6 @@ void EnemySchoolMan::Update()
 
 	_EnemyX = (_SmHit.left + _SmHit.right) / 2;
 	_EnemyY = (_SmHit.top + _SmHit.bottom) / 2;
-
-	_SmPlayerExploration.MYRectMakeCenter(_EnemyX, _EnemyY, 800, 500);
 
 	if (_IsRight)
 	{
@@ -422,7 +423,6 @@ void EnemySchoolMan::Update()
 
 void EnemySchoolMan::Render()
 {
-	_SmPlayerExploration.render(getMemDC());
 	_SmAttackExploration.render(getMemDC());
 	_SmShadowImage->render(getMemDC(), _SmShadow.left, _SmShadow.top);
 	_SmImage->aniRender(getMemDC(), _SmHit.left, _SmHit.top, _SmAni);

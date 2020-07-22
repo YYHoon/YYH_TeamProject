@@ -51,13 +51,11 @@ void EnemyManager::Updata()
 		_vCheerLeader[i]->Update();
 
 		//여기서 부터 치어리더 상태정의~
-		
 	}
 
 	for (int j = 0; j < _vSchoolMan.size(); j++)
 	{
 		_vSchoolMan[j]->Update();
-
 
 		//여기서 부터 남학생 상태정의~
 	}
@@ -65,9 +63,8 @@ void EnemyManager::Updata()
 	for (int k = 0; k < _vSchoolGirl.size(); k++)
 	{
 		_vSchoolGirl[k]->Update();
-		//여기서 부터 여학생 상태정의~~~~
-	}
 
+	}
 }
 
 void EnemyManager::Render()
@@ -85,6 +82,5 @@ void EnemyManager::Render()
 	for (int k = 0; k < _vSchoolGirl.size(); k++)
 	{
 		_vSchoolGirl[k]->Render();
-
 	}
 }

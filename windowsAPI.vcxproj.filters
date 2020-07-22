@@ -55,11 +55,20 @@
     <Filter Include="playGround\Enemy">
       <UniqueIdentifier>{65f197e3-2256-4ae4-8e80-29c97a48398e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="playGround\Enemy\EnemyState">
-      <UniqueIdentifier>{9f80abe4-129d-4aa3-8a86-43bc14835110}</UniqueIdentifier>
-    </Filter>
     <Filter Include="playGround\UI">
       <UniqueIdentifier>{fe524eec-3206-43f3-a31a-0fbb05d4eaa1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\StageManager">
+      <UniqueIdentifier>{6c35e96c-c9ac-401b-91c5-145dad26415e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\GameObject">
+      <UniqueIdentifier>{e03f229c-8a01-41ec-a193-d2959f03c536}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\Player">
+      <UniqueIdentifier>{ac7d38ee-0b4c-4b06-88be-ef50f4ea4ea8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\Player\State">
+      <UniqueIdentifier>{74defe76-8895-4b4e-9379-1522e3ea8f5a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -150,24 +159,6 @@
     <ClInclude Include="Event.h">
       <Filter>2DGameFramework\Event</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>playGround\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyAllState.h">
-      <Filter>playGround\Enemy\EnemyState</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyIdleState.h">
-      <Filter>playGround\Enemy\EnemyState</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyMove.h">
-      <Filter>playGround\Enemy\EnemyState</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyRunState.h">
-      <Filter>playGround\Enemy\EnemyState</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyState.h">
-      <Filter>playGround\Enemy\EnemyState</Filter>
-    </ClInclude>
     <ClInclude Include="pixelCollsion.h">
       <Filter>playGround\PixelColl</Filter>
     </ClInclude>
@@ -182,6 +173,48 @@
     </ClInclude>
     <ClInclude Include="iniDataManager.h">
       <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>playGround\StageManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ParentStage.h">
+      <Filter>playGround\StageManager</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveLoad.h">
+      <Filter>playGround\StageManager</Filter>
+    </ClInclude>
+    <ClInclude Include="StageManager.h">
+      <Filter>playGround\StageManager</Filter>
+    </ClInclude>
+    <ClInclude Include="StageOneOfOne.h">
+      <Filter>playGround\StageManager</Filter>
+    </ClInclude>
+    <ClInclude Include="StageOneStart.h">
+      <Filter>playGround\StageManager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>playGround\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>playGround\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>playGround\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyManager.h">
+      <Filter>playGround\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemySchoolMan.h">
+      <Filter>playGround\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemySchoolGirl.h">
+      <Filter>playGround\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyCheerLeader.h">
+      <Filter>playGround\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -257,21 +290,6 @@
     <ClCompile Include="Event.cpp">
       <Filter>2DGameFramework\Event</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>playGround\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyIdleState.cpp">
-      <Filter>playGround\Enemy\EnemyState</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyMove.cpp">
-      <Filter>playGround\Enemy\EnemyState</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyRunState.cpp">
-      <Filter>playGround\Enemy\EnemyState</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyState.cpp">
-      <Filter>playGround\Enemy\EnemyState</Filter>
-    </ClCompile>
     <ClCompile Include="pixelCollsion.cpp">
       <Filter>playGround\PixelColl</Filter>
     </ClCompile>
@@ -283,6 +301,48 @@
     </ClCompile>
     <ClCompile Include="iniDataManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>playGround\StageManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ParentStage.cpp">
+      <Filter>playGround\StageManager</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveLoad.cpp">
+      <Filter>playGround\StageManager</Filter>
+    </ClCompile>
+    <ClCompile Include="StageManager.cpp">
+      <Filter>playGround\StageManager</Filter>
+    </ClCompile>
+    <ClCompile Include="StageOneOfOne.cpp">
+      <Filter>playGround\StageManager</Filter>
+    </ClCompile>
+    <ClCompile Include="StageOneStart.cpp">
+      <Filter>playGround\StageManager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>playGround\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>playGround\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>playGround\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemySchoolMan.cpp">
+      <Filter>playGround\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyCheerLeader.cpp">
+      <Filter>playGround\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemySchoolGirl.cpp">
+      <Filter>playGround\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyManager.cpp">
+      <Filter>playGround\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,7 @@
 #include "EnemyCheerLeader.h"
 #include "EnemySchoolGirl.h"
 #include "EnemySchoolMan.h"
+#include "Player.h"
 #include <vector>
 
 enum ENEMYTYPE
@@ -30,6 +31,8 @@ private:
 	vSchoolMan	 _vSchoolMan;
 	vSchoolGirl  _vSchoolGirl;
 
+	Player* _Player;
+
 public:
 
 	HRESULT init();
@@ -38,7 +41,7 @@ public:
 	void Updata();
 	void Render();
 
-	vector<EnemyCheerLeader*> GetCheerLeader() { return _vCheerLeader; }
-	vector<EnemySchoolMan*>     GetSchoolMan() { return _vSchoolMan; }
-	vector<EnemySchoolGirl*>   GetSchoolGirl() { return _vSchoolGirl; }
+	typedef vector<EnemyCheerLeader*> vCheerLeader;
+	typedef vector<EnemySchoolMan*>   vSchoolMan;
+	typedef vector<EnemySchoolGirl*>  vSchoolGirl;
 };

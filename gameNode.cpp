@@ -38,6 +38,7 @@ HRESULT gameNode::init(bool managerInit)
 		KEYANIMANAGER->init();
 		CAMERAMANAGER->init();
 		TXTDATA->init();
+		INIDATA->init();
 	}
 
 
@@ -76,6 +77,9 @@ void gameNode::release()
 
 		CAMERAMANAGER->release();
 		CAMERAMANAGER->releaseSingleton();
+
+		INIDATA->release();
+		INIDATA->releaseSingleton();
 	}
 	
 	ReleaseDC(_hWnd, _hdc);

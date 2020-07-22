@@ -13,9 +13,9 @@ public:
 
 	GameObject() {};
 	~GameObject() {};
-	virtual void Init();
-	virtual void Release();
-	virtual void Update();
-	virtual void Render();
+	virtual void Init() = 0;
+	virtual void Release() = 0;
+	virtual void Update() = 0;
+	virtual void Render() = 0;
 };
 

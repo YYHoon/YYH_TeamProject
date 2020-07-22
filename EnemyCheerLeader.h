@@ -33,9 +33,10 @@ private:
 
 	MYRECT _EnemyShadow;				//적 그림자
 	MYRECT _Enemy;						//적 캐릭터 및 충돌처리용 사각형
-	MYRECT _EnemyPlayerExploration;		//적이 플레이어 탐색하는 영역
 	MYRECT _EnemyAttackExploration;		//플레이어 들어올시 공격하는 영역
 	MYRECT _EnemyAttack;				//적을 공격시 충돌처리용
+
+	POINTFLOAT _ClCenter;
 
 	float _ShadowX, _ShadowY; //그림자의 중점 (Enemy에 사용)
 
@@ -59,8 +60,8 @@ public:
 	virtual void Update();
 	virtual void Render();
 
-	float GetEnemyX() { return _ShadowX; }
-	float GetEnemyY() { return _ShadowY; }
+	float GetEnemyX() { return _ClCenter.x; }
+	float GetEnemyY() { return _ClCenter.y; }
 	MYRECT GetEnemyHit() { return _Enemy; } //피격영역
 
 	CLSTATE getClState() { return _ClState; }
@@ -68,7 +69,4 @@ public:
 	void hitHP(float damge);
 
 	float setHP() { return _Hp; }
-
-	void SetX(float X) { _ShadowX = X; }
-	void SetY(float Y) { _ShadowY = Y; }
 };
